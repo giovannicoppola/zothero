@@ -437,7 +437,18 @@
 			</dict>
 		</array>
 		<key>9A202C58-854E-4E02-A640-BF13A9E1B823</key>
-		<array/>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>AE6378F2-C364-4EEE-917E-3D27EA62A7F7</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
 		<key>9A384EEE-AA82-4FC5-8B13-1F7319613854</key>
 		<array>
 			<dict>
@@ -456,6 +467,19 @@
 			<dict>
 				<key>destinationuid</key>
 				<string>9A202C58-854E-4E02-A640-BF13A9E1B823</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>AE6378F2-C364-4EEE-917E-3D27EA62A7F7</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>37FA27BE-AD3C-4511-A464-76683EA89F3F</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -1500,7 +1524,7 @@ export PYTHONPATH="$PWD/lib"
 flags=()
 
 test -n "$bibliography" &amp;&amp; flags+=(--bibliography)
-test -n "$autopaste" &amp;&amp; flags+=(--paste)
+#test -n "$autopaste" &amp;&amp; flags+=(--paste)
 
 python3 zh.py copy $flags "$style" "$id"</string>
 				<key>scriptargtype</key>
@@ -1516,6 +1540,25 @@ python3 zh.py copy $flags "$style" "$id"</string>
 			<string>A950947F-8EA7-4749-AF55-2C7F9D6E695E</string>
 			<key>version</key>
 			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>externaltriggerid</key>
+				<string>paste</string>
+				<key>passinputasargument</key>
+				<false/>
+				<key>passvariables</key>
+				<true/>
+				<key>workflowbundleid</key>
+				<string>self</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.output.callexternaltrigger</string>
+			<key>uid</key>
+			<string>37FA27BE-AD3C-4511-A464-76683EA89F3F</string>
+			<key>version</key>
+			<integer>1</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -1583,6 +1626,25 @@ variables={allvars}
 			<string>alfred.workflow.utility.debug</string>
 			<key>uid</key>
 			<string>CDDDFF55-9266-40A0-B22F-89192559E0E3</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>inputstring</key>
+				<string>{var:autopaste}</string>
+				<key>matchcasesensitive</key>
+				<true/>
+				<key>matchmode</key>
+				<integer>1</integer>
+				<key>matchstring</key>
+				<string></string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.utility.filter</string>
+			<key>uid</key>
+			<string>AE6378F2-C364-4EEE-917E-3D27EA62A7F7</string>
 			<key>version</key>
 			<integer>1</integer>
 		</dict>
@@ -2279,6 +2341,15 @@ Edit the `ZOTERO_DIR` variable to point to Zotero 5's data directory if you aren
 			<key>ypos</key>
 			<integer>1095</integer>
 		</dict>
+		<key>37FA27BE-AD3C-4511-A464-76683EA89F3F</key>
+		<dict>
+			<key>colorindex</key>
+			<integer>3</integer>
+			<key>xpos</key>
+			<integer>2040</integer>
+			<key>ypos</key>
+			<integer>705</integer>
+		</dict>
 		<key>3D2145B0-1260-41B9-9EC1-A78EB5CA2400</key>
 		<dict>
 			<key>note</key>
@@ -2568,6 +2639,17 @@ Edit the `ZOTERO_DIR` variable to point to Zotero 5's data directory if you aren
 			<key>ypos</key>
 			<integer>220</integer>
 		</dict>
+		<key>AE6378F2-C364-4EEE-917E-3D27EA62A7F7</key>
+		<dict>
+			<key>colorindex</key>
+			<integer>4</integer>
+			<key>note</key>
+			<string>$autopaste is set</string>
+			<key>xpos</key>
+			<integer>1860</integer>
+			<key>ypos</key>
+			<integer>735</integer>
+		</dict>
 		<key>AEE6452E-9186-4609-8AD4-D74F469F1A79</key>
 		<dict>
 			<key>colorindex</key>
@@ -2734,12 +2816,12 @@ Edit the `ZOTERO_DIR` variable to point to Zotero 5's data directory if you aren
 	</dict>
 	<key>variablesdontexport</key>
 	<array>
-		<string>ZOTERO_DIR</string>
-		<string>COPY_CITEKEY_MOD</string>
 		<string>ATTACHMENTS_DIR</string>
+		<string>COPY_CITEKEY_MOD</string>
+		<string>ZOTERO_DIR</string>
 	</array>
 	<key>version</key>
-	<string>1.99.5</string>
+	<string>1.99.6</string>
 	<key>webaddress</key>
 	<string>https://github.com/deanishe/zothero</string>
 </dict>
