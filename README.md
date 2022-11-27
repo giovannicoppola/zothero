@@ -2,16 +2,18 @@
     <img src="./src/icon.png" width="200" height="200">
 </div>
 
-<a href="https://github.com/giovannicoppola/zothero/releases/latest/">
-<img alt="Downloads"
-src="https://img.shields.io/github/downloads/giovannicoppola/zothero/total?color=purple&label=Downloads"><br/>
-</a>
-
 
 ZotHero
 =======
 
 [Alfred][alfred] workflow for rapidly searching your Zotero database and copying citations.
+
+Original by Dean Jackson ([@deanishe](https://github.com/deanishe))
+
+<a href="https://github.com/giovannicoppola/zothero/releases/latest/">
+<img alt="Downloads"
+src="https://img.shields.io/github/downloads/giovannicoppola/zothero/total?color=purple&label=Downloads"><br/>
+</a>
 
 <!-- MarkdownTOC autolink="true" bracket="round" depth="3" autoanchor="true" -->
 
@@ -47,9 +49,9 @@ Features
 Download & installation
 -----------------------
 
-Download the `ZotHero-XYZ.alfredworkflow` file from [GitHub releases](https://github.com/deanishe/zothero/releases), and double-click the downloaded file to install.
+Download the `ZotHero-XYZ.alfredworkflow` file from [GitHub releases](https://github.com/giovannicoppola/zothero/releases), and double-click the downloaded file to install.
 
-**Note**: Versions 1.3.0 and later are only compatible with Alfred 4+. If you're still using Alfred 3, download [v1.2.2][v1.2.2].
+**Note**: Versions 2.0 and later are only compatible with Alfred 5. If you're still using Alfred 4, download [v1.99.7][v1.99.7].
 
 
 <a name="usage"></a>
@@ -225,7 +227,7 @@ The [Zorro icon][icon-source] was created by [Dan Lowenstein][lowenstein] from [
 [licence]: ./LICENCE
 [lowenstein]: https://thenounproject.com/danny_mustache
 [noun-project]: https://thenounproject.com
-[releases]: https://github.com/deanishe/zothero/releases
+[releases]: https://github.com/giovannicoppola/zothero/releases
 [smargh]: https://github.com/fractaledmind
 [zotquery]: https://github.com/fractaledmind/alfred_zotquery
-[v1.2.2]: https://github.com/deanishe/zothero/releases/tag/v1.2.2
+[v1.99.7]: https://github.com/giovannicoppola/zothero/releases/tag/v1.99.7

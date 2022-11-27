@@ -679,7 +679,7 @@
 				<key>escaping</key>
 				<integer>102</integer>
 				<key>keyword</key>
-				<string>zot</string>
+				<string>{var:mainkeyword}</string>
 				<key>queuedelaycustom</key>
 				<integer>3</integer>
 				<key>queuedelayimmediatelyinitially</key>
@@ -719,6 +719,10 @@ python3 zh.py search "$1"</string>
 			<dict>
 				<key>browser</key>
 				<string></string>
+				<key>skipqueryencode</key>
+				<false/>
+				<key>skipvarencode</key>
+				<false/>
 				<key>spaces</key>
 				<string></string>
 				<key>url</key>
@@ -918,7 +922,7 @@ python3 zh.py copy $flags "$citekey"</string>
 				<key>escaping</key>
 				<integer>102</integer>
 				<key>keyword</key>
-				<string>zot:</string>
+				<string>{var:mainkeyword}:</string>
 				<key>queuedelaycustom</key>
 				<integer>3</integer>
 				<key>queuedelayimmediatelyinitially</key>
@@ -2006,6 +2010,10 @@ python3 zh.py locale "$1"</string>
 			<dict>
 				<key>browser</key>
 				<string></string>
+				<key>skipqueryencode</key>
+				<false/>
+				<key>skipvarencode</key>
+				<false/>
 				<key>spaces</key>
 				<string></string>
 				<key>url</key>
@@ -2170,12 +2178,7 @@ python3 zh.py notify $flags</string>
 =======
 
 Search your Zotero database and copy citations.
-
-
-Configuration
--------------
-
-Edit the `ZOTERO_DIR` variable to point to Zotero 5's data directory if you aren't using the default (~/Zotero).</string>
+`zotconf` to view and edit workflow configuration.</string>
 	<key>uidata</key>
 	<dict>
 		<key>01395D7D-4E59-4FB9-8369-9578C42822C6</key>
@@ -2183,50 +2186,50 @@ Edit the `ZOTERO_DIR` variable to point to Zotero 5's data directory if you aren
 			<key>colorindex</key>
 			<integer>3</integer>
 			<key>xpos</key>
-			<integer>1770</integer>
+			<real>1770</real>
 			<key>ypos</key>
-			<integer>875</integer>
+			<real>875</real>
 		</dict>
 		<key>09DFDC0D-394F-470C-974D-BB4AAB208CED</key>
 		<dict>
 			<key>xpos</key>
-			<integer>860</integer>
+			<real>860</real>
 			<key>ypos</key>
-			<integer>1435</integer>
+			<real>1435</real>
 		</dict>
 		<key>0E02FA87-DF30-4A39-A326-003800342DDF</key>
 		<dict>
 			<key>colorindex</key>
 			<integer>12</integer>
 			<key>xpos</key>
-			<integer>1330</integer>
+			<real>1330</real>
 			<key>ypos</key>
-			<integer>240</integer>
+			<real>240</real>
 		</dict>
 		<key>118BDCA4-C25F-449C-93D8-877E192E22D2</key>
 		<dict>
 			<key>xpos</key>
-			<integer>510</integer>
+			<real>510</real>
 			<key>ypos</key>
-			<integer>1095</integer>
+			<real>1095</real>
 		</dict>
 		<key>1AF47A02-39EA-41B0-BD44-C933C31014F5</key>
 		<dict>
 			<key>colorindex</key>
 			<integer>9</integer>
 			<key>xpos</key>
-			<integer>70</integer>
+			<real>70</real>
 			<key>ypos</key>
-			<integer>1065</integer>
+			<real>1065</real>
 		</dict>
 		<key>1CA1CA5F-6531-4BE6-8FA9-734C04C5EF4B</key>
 		<dict>
 			<key>note</key>
 			<string>$action = choose-locale</string>
 			<key>xpos</key>
-			<integer>730</integer>
+			<real>730</real>
 			<key>ypos</key>
-			<integer>1285</integer>
+			<real>1285</real>
 		</dict>
 		<key>256A2232-79C6-4956-9EDA-3EEDB0EE1CDF</key>
 		<dict>
@@ -2235,102 +2238,102 @@ Edit the `ZOTERO_DIR` variable to point to Zotero 5's data directory if you aren
 			<key>note</key>
 			<string>$autopaste is unset</string>
 			<key>xpos</key>
-			<integer>1290</integer>
+			<real>1290</real>
 			<key>ypos</key>
-			<integer>565</integer>
+			<real>565</real>
 		</dict>
 		<key>27AB4926-3249-4A80-85B5-6176911ACE7D</key>
 		<dict>
 			<key>colorindex</key>
 			<integer>8</integer>
 			<key>xpos</key>
-			<integer>860</integer>
+			<real>860</real>
 			<key>ypos</key>
-			<integer>525</integer>
+			<real>525</real>
 		</dict>
 		<key>2B20149E-1275-476A-9CAA-254CB2DC74E0</key>
 		<dict>
 			<key>note</key>
 			<string>Clear cached data</string>
 			<key>xpos</key>
-			<integer>860</integer>
+			<real>860</real>
 			<key>ypos</key>
-			<integer>1605</integer>
+			<real>1605</real>
 		</dict>
 		<key>2C059A51-AE82-49BA-A5E9-13824D15C4EC</key>
 		<dict>
 			<key>note</key>
 			<string>$action = show-citations</string>
 			<key>xpos</key>
-			<integer>730</integer>
+			<real>730</real>
 			<key>ypos</key>
-			<integer>555</integer>
+			<real>555</real>
 		</dict>
 		<key>2F6636A4-F41B-4D28-9AF3-754CE5B9975A</key>
 		<dict>
 			<key>note</key>
 			<string>Open entry in Zotero</string>
 			<key>xpos</key>
-			<integer>860</integer>
+			<real>860</real>
 			<key>ypos</key>
-			<integer>50</integer>
+			<real>50</real>
 		</dict>
 		<key>301ED75B-77EF-4479-B2A5-ADD51A1143E5</key>
 		<dict>
 			<key>note</key>
 			<string>$action = show-attachments</string>
 			<key>xpos</key>
-			<integer>730</integer>
+			<real>730</real>
 			<key>ypos</key>
-			<integer>395</integer>
+			<real>395</real>
 		</dict>
 		<key>3636139E-A061-4685-8914-AC3351A9B797</key>
 		<dict>
 			<key>note</key>
 			<string>$next is set</string>
 			<key>xpos</key>
-			<integer>1660</integer>
+			<real>1660</real>
 			<key>ypos</key>
-			<integer>1095</integer>
+			<real>1095</real>
 		</dict>
 		<key>3D2145B0-1260-41B9-9EC1-A78EB5CA2400</key>
 		<dict>
 			<key>note</key>
 			<string>$action = set-default</string>
 			<key>xpos</key>
-			<integer>730</integer>
+			<real>730</real>
 			<key>ypos</key>
-			<integer>905</integer>
+			<real>905</real>
 		</dict>
 		<key>47548F5E-0787-4D45-AFAB-B000C4218019</key>
 		<dict>
 			<key>xpos</key>
-			<integer>1050</integer>
+			<real>1050</real>
 			<key>ypos</key>
-			<integer>55</integer>
+			<real>55</real>
 		</dict>
 		<key>49F6E2D6-5BF1-4E9A-A7CD-A4E04C30DFA8</key>
 		<dict>
 			<key>colorindex</key>
 			<integer>7</integer>
 			<key>xpos</key>
-			<integer>860</integer>
+			<real>860</real>
 			<key>ypos</key>
-			<integer>875</integer>
+			<real>875</real>
 		</dict>
 		<key>4C4E438A-90C4-463C-A31C-435EB61F8236</key>
 		<dict>
 			<key>xpos</key>
-			<integer>550</integer>
+			<real>550</real>
 			<key>ypos</key>
-			<integer>80</integer>
+			<real>80</real>
 		</dict>
 		<key>517E04B5-24AC-4071-BEC9-7FCBB8D06395</key>
 		<dict>
 			<key>xpos</key>
-			<integer>1250</integer>
+			<real>1250</real>
 			<key>ypos</key>
-			<integer>55</integer>
+			<real>55</real>
 		</dict>
 		<key>53172C76-0F6F-4E84-8C96-D0E81629CBA4</key>
 		<dict>
@@ -2339,18 +2342,18 @@ Edit the `ZOTERO_DIR` variable to point to Zotero 5's data directory if you aren
 			<key>note</key>
 			<string>Search common fields</string>
 			<key>xpos</key>
-			<integer>270</integer>
+			<real>270</real>
 			<key>ypos</key>
-			<integer>50</integer>
+			<real>50</real>
 		</dict>
 		<key>5CFF0FD7-987C-4910-AD1E-0C40BF66585A</key>
 		<dict>
 			<key>colorindex</key>
 			<integer>10</integer>
 			<key>xpos</key>
-			<integer>70</integer>
+			<real>70</real>
 			<key>ypos</key>
-			<integer>220</integer>
+			<real>220</real>
 		</dict>
 		<key>5D1E28B8-C1D6-495B-856F-F48C59150FE0</key>
 		<dict>
@@ -2359,9 +2362,9 @@ Edit the `ZOTERO_DIR` variable to point to Zotero 5's data directory if you aren
 			<key>note</key>
 			<string>Open file or URL</string>
 			<key>xpos</key>
-			<integer>1450</integer>
+			<real>1450</real>
 			<key>ypos</key>
-			<integer>365</integer>
+			<real>365</real>
 		</dict>
 		<key>5ED18AC3-4DEE-4486-8717-A5742EB02AA7</key>
 		<dict>
@@ -2370,27 +2373,27 @@ Edit the `ZOTERO_DIR` variable to point to Zotero 5's data directory if you aren
 			<key>note</key>
 			<string>Post a notification</string>
 			<key>xpos</key>
-			<integer>1490</integer>
+			<real>1490</real>
 			<key>ypos</key>
-			<integer>1695</integer>
+			<real>1695</real>
 		</dict>
 		<key>65566F30-2B84-43B7-8B3C-3F5EDDE0663F</key>
 		<dict>
 			<key>colorindex</key>
 			<integer>4</integer>
 			<key>xpos</key>
-			<integer>1335</integer>
+			<real>1335</real>
 			<key>ypos</key>
-			<integer>735</integer>
+			<real>735</real>
 		</dict>
 		<key>65A74884-90D6-4453-963E-454CF4C84DCB</key>
 		<dict>
 			<key>colorindex</key>
 			<integer>7</integer>
 			<key>xpos</key>
-			<integer>1110</integer>
+			<real>1110</real>
 			<key>ypos</key>
-			<integer>1165</integer>
+			<real>1165</real>
 		</dict>
 		<key>674740C4-BFDA-44C8-A478-586EF06217BF</key>
 		<dict>
@@ -2399,45 +2402,45 @@ Edit the `ZOTERO_DIR` variable to point to Zotero 5's data directory if you aren
 			<key>note</key>
 			<string>Configure workflow</string>
 			<key>xpos</key>
-			<integer>270</integer>
+			<real>270</real>
 			<key>ypos</key>
-			<integer>1065</integer>
+			<real>1065</real>
 		</dict>
 		<key>67475FEA-6BC4-4EBA-B18B-5BF88B41D320</key>
 		<dict>
 			<key>colorindex</key>
 			<integer>2</integer>
 			<key>xpos</key>
-			<integer>860</integer>
+			<real>860</real>
 			<key>ypos</key>
-			<integer>365</integer>
+			<real>365</real>
 		</dict>
 		<key>7123D0FE-B9BA-4300-9D28-410EE7B10E56</key>
 		<dict>
 			<key>note</key>
 			<string>$action = open-url</string>
 			<key>xpos</key>
-			<integer>730</integer>
+			<real>730</real>
 			<key>ypos</key>
-			<integer>1465</integer>
+			<real>1465</real>
 		</dict>
 		<key>768ECE7D-BB80-47A0-AE4A-4AA679468977</key>
 		<dict>
 			<key>note</key>
 			<string>$action = copy-citekey</string>
 			<key>xpos</key>
-			<integer>730</integer>
+			<real>730</real>
 			<key>ypos</key>
-			<integer>240</integer>
+			<real>240</real>
 		</dict>
 		<key>780DD041-49A4-44BF-89BE-4D53688296C0</key>
 		<dict>
 			<key>colorindex</key>
 			<integer>7</integer>
 			<key>xpos</key>
-			<integer>1050</integer>
+			<real>1050</real>
 			<key>ypos</key>
-			<integer>875</integer>
+			<real>875</real>
 		</dict>
 		<key>7D722132-9CB1-4556-B401-5A32F089CB28</key>
 		<dict>
@@ -2446,54 +2449,54 @@ Edit the `ZOTERO_DIR` variable to point to Zotero 5's data directory if you aren
 			<key>note</key>
 			<string>Choose a field to search</string>
 			<key>xpos</key>
-			<integer>270</integer>
+			<real>270</real>
 			<key>ypos</key>
-			<integer>220</integer>
+			<real>220</real>
 		</dict>
 		<key>7E1721EF-1D18-410E-8ACF-810BE8A960A7</key>
 		<dict>
 			<key>colorindex</key>
 			<integer>2</integer>
 			<key>xpos</key>
-			<integer>1050</integer>
+			<real>1050</real>
 			<key>ypos</key>
-			<integer>365</integer>
+			<real>365</real>
 		</dict>
 		<key>7F4D56BD-6BC8-4206-87AC-33E2F9C05A2E</key>
 		<dict>
 			<key>colorindex</key>
 			<integer>8</integer>
 			<key>xpos</key>
-			<integer>70</integer>
+			<real>70</real>
 			<key>ypos</key>
-			<integer>705</integer>
+			<real>705</real>
 		</dict>
 		<key>7FB90320-6EAF-415A-9DD9-50B79BC0F901</key>
 		<dict>
 			<key>colorindex</key>
 			<integer>10</integer>
 			<key>xpos</key>
-			<integer>70</integer>
+			<real>70</real>
 			<key>ypos</key>
-			<integer>50</integer>
+			<real>50</real>
 		</dict>
 		<key>88776196-8BC2-4B74-9B0E-15961AAC9A5C</key>
 		<dict>
 			<key>colorindex</key>
 			<integer>3</integer>
 			<key>xpos</key>
-			<integer>1110</integer>
+			<real>1110</real>
 			<key>ypos</key>
-			<integer>1695</integer>
+			<real>1695</real>
 		</dict>
 		<key>89264586-3988-49CB-A0D1-7303A009E560</key>
 		<dict>
 			<key>colorindex</key>
 			<integer>12</integer>
 			<key>xpos</key>
-			<integer>860</integer>
+			<real>860</real>
 			<key>ypos</key>
-			<integer>210</integer>
+			<real>210</real>
 		</dict>
 		<key>8956B5DB-42F0-4570-9265-ECD302239D56</key>
 		<dict>
@@ -2502,54 +2505,54 @@ Edit the `ZOTERO_DIR` variable to point to Zotero 5's data directory if you aren
 			<key>note</key>
 			<string>View citation formats</string>
 			<key>xpos</key>
-			<integer>270</integer>
+			<real>270</real>
 			<key>ypos</key>
-			<integer>705</integer>
+			<real>705</real>
 		</dict>
 		<key>8E44403F-E563-4611-9D78-046CD3CB6E61</key>
 		<dict>
 			<key>colorindex</key>
 			<integer>3</integer>
 			<key>xpos</key>
-			<integer>1290</integer>
+			<real>1290</real>
 			<key>ypos</key>
-			<integer>1695</integer>
+			<real>1695</real>
 		</dict>
 		<key>8F85FB21-8921-402F-BF70-C7C35E769212</key>
 		<dict>
 			<key>colorindex</key>
 			<integer>4</integer>
 			<key>xpos</key>
-			<integer>860</integer>
+			<real>860</real>
 			<key>ypos</key>
-			<integer>705</integer>
+			<real>705</real>
 		</dict>
 		<key>920760D8-E7AC-4EA8-A459-198BB5FA924A</key>
 		<dict>
 			<key>colorindex</key>
 			<integer>12</integer>
 			<key>xpos</key>
-			<integer>1050</integer>
+			<real>1050</real>
 			<key>ypos</key>
-			<integer>210</integer>
+			<real>210</real>
 		</dict>
 		<key>9A202C58-854E-4E02-A640-BF13A9E1B823</key>
 		<dict>
 			<key>note</key>
 			<string>Copy citation to pasteboard</string>
 			<key>xpos</key>
-			<integer>1630</integer>
+			<real>1630</real>
 			<key>ypos</key>
-			<integer>705</integer>
+			<real>705</real>
 		</dict>
 		<key>9A384EEE-AA82-4FC5-8B13-1F7319613854</key>
 		<dict>
 			<key>note</key>
 			<string>$action = open-in-zotero</string>
 			<key>xpos</key>
-			<integer>730</integer>
+			<real>730</real>
 			<key>ypos</key>
-			<integer>80</integer>
+			<real>80</real>
 		</dict>
 		<key>A950947F-8EA7-4749-AF55-2C7F9D6E695E</key>
 		<dict>
@@ -2558,18 +2561,18 @@ Edit the `ZOTERO_DIR` variable to point to Zotero 5's data directory if you aren
 			<key>note</key>
 			<string>Generate citation</string>
 			<key>xpos</key>
-			<integer>1450</integer>
+			<real>1450</real>
 			<key>ypos</key>
-			<integer>705</integer>
+			<real>705</real>
 		</dict>
 		<key>A966EACB-331B-488E-937C-5D8DE7767B9D</key>
 		<dict>
 			<key>colorindex</key>
 			<integer>9</integer>
 			<key>xpos</key>
-			<integer>1110</integer>
+			<real>1110</real>
 			<key>ypos</key>
-			<integer>1535</integer>
+			<real>1535</real>
 		</dict>
 		<key>AB53FBF0-1EC6-43BE-96BA-A30A9E6E9B66</key>
 		<dict>
@@ -2578,18 +2581,18 @@ Edit the `ZOTERO_DIR` variable to point to Zotero 5's data directory if you aren
 			<key>note</key>
 			<string>Call normal search with category pre-filled</string>
 			<key>xpos</key>
-			<integer>470</integer>
+			<real>470</real>
 			<key>ypos</key>
-			<integer>220</integer>
+			<real>220</real>
 		</dict>
 		<key>AEE6452E-9186-4609-8AD4-D74F469F1A79</key>
 		<dict>
 			<key>colorindex</key>
 			<integer>4</integer>
 			<key>xpos</key>
-			<integer>1050</integer>
+			<real>1050</real>
 			<key>ypos</key>
-			<integer>705</integer>
+			<real>705</real>
 		</dict>
 		<key>AF2071DD-5096-4528-8E57-EFD4E1817FEA</key>
 		<dict>
@@ -2598,18 +2601,18 @@ Edit the `ZOTERO_DIR` variable to point to Zotero 5's data directory if you aren
 			<key>note</key>
 			<string>View entry attachments</string>
 			<key>xpos</key>
-			<integer>1250</integer>
+			<real>1250</real>
 			<key>ypos</key>
-			<integer>365</integer>
+			<real>365</real>
 		</dict>
 		<key>B07E7A55-14DC-42F2-8321-17C2E8090E03</key>
 		<dict>
 			<key>note</key>
 			<string>$action = choose-style</string>
 			<key>xpos</key>
-			<integer>730</integer>
+			<real>730</real>
 			<key>ypos</key>
-			<integer>1095</integer>
+			<real>1095</real>
 		</dict>
 		<key>C66B4BF4-4CED-4B3C-962E-C2F190B575EB</key>
 		<dict>
@@ -2618,9 +2621,9 @@ Edit the `ZOTERO_DIR` variable to point to Zotero 5's data directory if you aren
 			<key>note</key>
 			<string>Set a variable in info.plist</string>
 			<key>xpos</key>
-			<integer>1450</integer>
+			<real>1450</real>
 			<key>ypos</key>
-			<integer>875</integer>
+			<real>875</real>
 		</dict>
 		<key>C75ABE16-D510-4099-BE4B-7BB579DA8435</key>
 		<dict>
@@ -2629,88 +2632,88 @@ Edit the `ZOTERO_DIR` variable to point to Zotero 5's data directory if you aren
 			<key>note</key>
 			<string>OneUpdater</string>
 			<key>xpos</key>
-			<integer>355</integer>
+			<real>355</real>
 			<key>ypos</key>
-			<integer>475</integer>
+			<real>475</real>
 		</dict>
 		<key>C93018EF-4629-4261-B997-453D8F2D6856</key>
 		<dict>
 			<key>colorindex</key>
 			<integer>8</integer>
 			<key>xpos</key>
-			<integer>510</integer>
+			<real>510</real>
 			<key>ypos</key>
-			<integer>735</integer>
+			<real>735</real>
 		</dict>
 		<key>CDDDFF55-9266-40A0-B22F-89192559E0E3</key>
 		<dict>
 			<key>colorindex</key>
 			<integer>4</integer>
 			<key>xpos</key>
-			<integer>1250</integer>
+			<real>1250</real>
 			<key>ypos</key>
-			<integer>735</integer>
+			<real>735</real>
 		</dict>
 		<key>D5227517-F91E-42FA-BE39-09BDB8443B0F</key>
 		<dict>
 			<key>colorindex</key>
 			<integer>12</integer>
 			<key>xpos</key>
-			<integer>1250</integer>
+			<real>1250</real>
 			<key>ypos</key>
-			<integer>240</integer>
+			<real>240</real>
 		</dict>
 		<key>D78E4F18-6D77-4514-A55F-8894C014AB60</key>
 		<dict>
 			<key>note</key>
 			<string>$action = copy-citation</string>
 			<key>xpos</key>
-			<integer>730</integer>
+			<real>730</real>
 			<key>ypos</key>
-			<integer>735</integer>
+			<real>735</real>
 		</dict>
 		<key>D84E30BC-1391-41D8-908A-D95EFCA645A4</key>
 		<dict>
 			<key>colorindex</key>
 			<integer>12</integer>
 			<key>xpos</key>
-			<integer>1450</integer>
+			<real>1450</real>
 			<key>ypos</key>
-			<integer>210</integer>
+			<real>210</real>
 		</dict>
 		<key>DA0C4D5F-7B13-41B9-B85A-091DD3EE9CAD</key>
 		<dict>
 			<key>xpos</key>
-			<integer>1770</integer>
+			<real>1770</real>
 			<key>ypos</key>
-			<integer>1065</integer>
+			<real>1065</real>
 		</dict>
 		<key>E1E3A9E7-0EEF-4745-A62C-79E46A2AF51F</key>
 		<dict>
 			<key>note</key>
 			<string>$action = reload</string>
 			<key>xpos</key>
-			<integer>730</integer>
+			<real>730</real>
 			<key>ypos</key>
-			<integer>1635</integer>
+			<real>1635</real>
 		</dict>
 		<key>ED06F3FD-4D96-4866-9EEC-11B64FB6D558</key>
 		<dict>
 			<key>note</key>
 			<string>Choose locale</string>
 			<key>xpos</key>
-			<integer>860</integer>
+			<real>860</real>
 			<key>ypos</key>
-			<integer>1255</integer>
+			<real>1255</real>
 		</dict>
 		<key>F8F07F3C-11D6-44F1-BFE5-66F70A8C0253</key>
 		<dict>
 			<key>colorindex</key>
 			<integer>7</integer>
 			<key>xpos</key>
-			<integer>1290</integer>
+			<real>1290</real>
 			<key>ypos</key>
-			<integer>905</integer>
+			<real>905</real>
 		</dict>
 		<key>F9040898-2FD2-4C79-B34F-1EEAD90BE256</key>
 		<dict>
@@ -2719,44 +2722,154 @@ Edit the `ZOTERO_DIR` variable to point to Zotero 5's data directory if you aren
 			<key>note</key>
 			<string>Show "generating your citation" status message</string>
 			<key>xpos</key>
-			<integer>1450</integer>
+			<real>1450</real>
 			<key>ypos</key>
-			<integer>535</integer>
+			<real>535</real>
 		</dict>
 		<key>F912A5F2-6586-498F-8A32-C11B59C687F5</key>
 		<dict>
 			<key>note</key>
 			<string>Choose default styles</string>
 			<key>xpos</key>
-			<integer>860</integer>
+			<real>860</real>
 			<key>ypos</key>
-			<integer>1065</integer>
+			<real>1065</real>
 		</dict>
 	</dict>
 	<key>userconfigurationconfig</key>
-	<array/>
-	<key>variables</key>
-	<dict>
-		<key>ATTACHMENTS_DIR</key>
-		<string></string>
-		<key>CITE_STYLE</key>
-		<string>http://www.zotero.org/styles/chicago-author-date</string>
-		<key>COPY_CITEKEY_MOD</key>
-		<string></string>
-		<key>LOCALE</key>
-		<string>en-US</string>
-		<key>ZOTERO_DIR</key>
-		<string></string>
-	</dict>
-	<key>variablesdontexport</key>
 	<array>
-		<string>ZOTERO_DIR</string>
-		<string>COPY_CITEKEY_MOD</string>
-		<string>ATTACHMENTS_DIR</string>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>default</key>
+				<string>zot</string>
+				<key>placeholder</key>
+				<string></string>
+				<key>required</key>
+				<false/>
+				<key>trim</key>
+				<true/>
+			</dict>
+			<key>description</key>
+			<string></string>
+			<key>label</key>
+			<string>Keyword</string>
+			<key>type</key>
+			<string>textfield</string>
+			<key>variable</key>
+			<string>mainkeyword</string>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>default</key>
+				<string></string>
+				<key>placeholder</key>
+				<string></string>
+				<key>required</key>
+				<false/>
+				<key>trim</key>
+				<true/>
+			</dict>
+			<key>description</key>
+			<string>if you have set a "Linked Attachment Base Directory" in Zotero, but the workflow can't find the directory, enter its path here</string>
+			<key>label</key>
+			<string>Attachments Directory</string>
+			<key>type</key>
+			<string>textfield</string>
+			<key>variable</key>
+			<string>ATTACHMENTS_DIR</string>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>default</key>
+				<string>http://www.zotero.org/styles/chicago-author-date</string>
+				<key>placeholder</key>
+				<string></string>
+				<key>required</key>
+				<false/>
+				<key>trim</key>
+				<true/>
+			</dict>
+			<key>description</key>
+			<string></string>
+			<key>label</key>
+			<string>Citation Style</string>
+			<key>type</key>
+			<string>textfield</string>
+			<key>variable</key>
+			<string>CITE_STYLE</string>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>default</key>
+				<string></string>
+				<key>placeholder</key>
+				<string></string>
+				<key>required</key>
+				<false/>
+				<key>trim</key>
+				<true/>
+			</dict>
+			<key>description</key>
+			<string>When the Better-Bibtex plugin for Zotero is installed and `COPY_CITEKEY_MOD` is set to any of `-`(no modifier), `alt`, `ctrl`, `cmd`, `fn`, `shift`, the "Copy citekey" functionality can be enabled to override above operations</string>
+			<key>label</key>
+			<string>Copy Citekey Mod</string>
+			<key>type</key>
+			<string>textfield</string>
+			<key>variable</key>
+			<string>COPY_CITEKEY_MOD</string>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>default</key>
+				<string>en-US</string>
+				<key>placeholder</key>
+				<string></string>
+				<key>required</key>
+				<false/>
+				<key>trim</key>
+				<true/>
+			</dict>
+			<key>description</key>
+			<string>Locale for citations.</string>
+			<key>label</key>
+			<string>Locale</string>
+			<key>type</key>
+			<string>textfield</string>
+			<key>variable</key>
+			<string>LOCALE</string>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>default</key>
+				<string></string>
+				<key>placeholder</key>
+				<string></string>
+				<key>required</key>
+				<false/>
+				<key>trim</key>
+				<true/>
+			</dict>
+			<key>description</key>
+			<string>Path to your Zotero data. Read from Zotero's config by default. Edit the `ZOTERO_DIR` variable to point to Zotero 5's data directory if you aren't using the default (~/Zotero).</string>
+			<key>label</key>
+			<string>Zotero Directory</string>
+			<key>type</key>
+			<string>textfield</string>
+			<key>variable</key>
+			<string>ZOTERO_DIR</string>
+		</dict>
 	</array>
+	<key>variablesdontexport</key>
+	<array/>
 	<key>version</key>
-	<string>1.99.7</string>
+	<string>2.0</string>
 	<key>webaddress</key>
-	<string>https://github.com/deanishe/zothero</string>
+	<string>https://github.com/giovannicoppola/zothero/</string>
 </dict>
 </plist>
