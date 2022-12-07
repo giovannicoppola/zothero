@@ -76,7 +76,6 @@ These are the workflow's default keywords in Alfred:
 - `zot:[<query>]` — Search a specific field.
     - `↩` — Select a field to search against.
 - `zotconf [<query>]` — View and edit workflow configuration.
-    - `An Update is Available` / `Workflow is Up To Date` — Whether a newer version of the workflow is available.
     - `Default Style: …` — Choose a citation style for the `⌘↩` and `⌥↩` hotkeys (on search results).
     - `Locale: …` — Choose a locale for the formatting of citations. If unset, the default for the style is used, or if none is set, US English.
     - `Reload Zotero Cache` — Clear the workflow's cache of Zotero data. Useful if the workflow gets out of sync with Zotero.
