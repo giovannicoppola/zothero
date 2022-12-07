@@ -254,16 +254,6 @@
 				<key>vitoclose</key>
 				<true/>
 			</dict>
-			<dict>
-				<key>destinationuid</key>
-				<string>C75ABE16-D510-4099-BE4B-7BB579DA8435</string>
-				<key>modifiers</key>
-				<integer>0</integer>
-				<key>modifiersubtext</key>
-				<string></string>
-				<key>vitoclose</key>
-				<false/>
-			</dict>
 		</array>
 		<key>5CFF0FD7-987C-4910-AD1E-0C40BF66585A</key>
 		<array>
@@ -1146,103 +1136,6 @@ python3 zh.py attachments $id "$1"</string>
 			<string>301ED75B-77EF-4479-B2A5-ADD51A1143E5</string>
 			<key>version</key>
 			<integer>1</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>concurrently</key>
-				<false/>
-				<key>escaping</key>
-				<integer>0</integer>
-				<key>script</key>
-				<string># THESE VARIABLES MUST BE SET. SEE THE ONEUPDATER README FOR AN EXPLANATION OF EACH.
-readonly remote_info_plist='https://raw.githubusercontent.com/giovannicoppola/zothero/master/src/info.plist'
-readonly workflow_url='https://github.com/giovannicoppola/zothero'
-readonly download_type='github_release'
-readonly frequency_check='1'
-
-# FROM HERE ON, CODE SHOULD BE LEFT UNTOUCHED!
-function abort {
-  echo "${1}" &gt;&amp;2
-  exit 1
-}
-
-function url_exists {
-  curl --silent --location --output /dev/null --fail --range 0-0 "${1}"
-}
-
-function notification {
-  local -r notificator="$(find . -type f -name 'notificator')"
-
-  if [[ -f "${notificator}" &amp;&amp; "$(/usr/bin/file --brief --mime-type "${notificator}")" == 'text/x-shellscript' ]]; then
-    "${notificator}" --message "${1}" --title "${alfred_workflow_name}" --subtitle 'A new version is available'
-    return
-  fi
-
-  osascript -e "display notification \"${1}\" with title \"${alfred_workflow_name}\" subtitle \"A new version is available\""
-}
-
-# Local sanity checks
-readonly local_info_plist='info.plist'
-readonly local_version="$(/usr/libexec/PlistBuddy -c 'print version' "${local_info_plist}")"
-
-[[ -n "${local_version}" ]] || abort 'You need to set a workflow version in the configuration sheet.'
-[[ "${download_type}" =~ ^(direct|page|github_release)$ ]] || abort "'download_type' (${download_type}) needs to be one of 'direct', 'page', or 'github_release'."
-[[ "${frequency_check}" =~ ^[0-9]+$ ]] || abort "'frequency_check' (${frequency_check}) needs to be a number."
-
-# Check for updates
-if [[ $(find "${local_info_plist}" -mtime +"${frequency_check}"d) ]]; then
-  # Remote sanity check
-  if ! url_exists "${remote_info_plist}"; then
-    abort "'remote_info_plist' (${remote_info_plist}) appears to not be reachable."
-  fi
-
-  readonly tmp_file="$(mktemp)"
-  curl --silent --location --output "${tmp_file}" "${remote_info_plist}"
-  readonly remote_version="$(/usr/libexec/PlistBuddy -c 'print version' "${tmp_file}")"
-  rm "${tmp_file}"
-
-  if [[ "${local_version}" == "${remote_version}" ]]; then
-    touch "${local_info_plist}" # Reset timer by touching local file
-    exit 0
-  fi
-
-  if [[ "${download_type}" == 'page' ]]; then
-    notification 'Opening download page…'
-    open "${workflow_url}"
-    exit 0
-  fi
-
-  readonly download_url="$(
-    if [[ "${download_type}" == 'github_release' ]]; then
-      osascript -l JavaScript -e 'function run(argv) { return JSON.parse(argv[0])["assets"].find(asset =&gt; asset["browser_download_url"].endsWith(".alfredworkflow"))["browser_download_url"] }' "$(curl --silent "https://api.github.com/repos/${workflow_url}/releases/latest")"
-    else
-      echo "${workflow_url}"
-    fi
-  )"
-
-  if url_exists "${download_url}"; then
-    notification 'Downloading and installing…'
-    readonly download_name="$(basename "${download_url}")"
-    curl --silent --location --output "${HOME}/Downloads/${download_name}" "${download_url}"
-    open "${HOME}/Downloads/${download_name}"
-  else
-    abort "'workflow_url' (${download_url}) appears to not be reachable."
-  fi
-fi</string>
-				<key>scriptargtype</key>
-				<integer>1</integer>
-				<key>scriptfile</key>
-				<string></string>
-				<key>type</key>
-				<integer>0</integer>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.action.script</string>
-			<key>uid</key>
-			<string>C75ABE16-D510-4099-BE4B-7BB579DA8435</string>
-			<key>version</key>
-			<integer>2</integer>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -2174,11 +2067,51 @@ python3 zh.py notify $flags</string>
 		</dict>
 	</array>
 	<key>readme</key>
-	<string>ZotHero
-=======
+	<string># ZotHero
 
 Search your Zotero database and copy citations.
-`zotconf` to view and edit workflow configuration.</string>
+`zotconf` to view and edit workflow configuration.
+More details [here](https://github.com/giovannicoppola/zothero)
+
+## Features
+--------
+
+- Perform full-text search across your Zotero database, including only searching specific fields
+- Copy citations using any [CSL][csl] style you have installed in Zotero
+- Copy citations either in citation/note style or bibliography style
+- Copy citations in any [locale supported by CSL](#locales)
+- Copy Better BibTeX citekeys
+- Citations are copied in multiple formats, so the right data are automatically pasted into the application you're using
+- Trigger search while you type using the Snippet Trigger (you must assign the snippet keyword yourself in Alfred Preferences)
+
+
+## Usage
+-----
+
+These are the workflow's default keywords in Alfred:
+
+- `zot &lt;query&gt;` — Search your Zotero database (common fields).
+    - `↩` — Open the entry in Zotero. (`fn+↩` is an alternate)
+    - `⌘↩` — Copy citation to the pasteboard (see [Configuration](#configuration)).
+    - `⌥↩` — Copy bibliography-style citation to the pasteboard (see [Configuration](#configuration)).
+    - `⇧↩` — View entry attachments (if present).
+        - `↩` — Open an attachment in the default application.
+    - `^↩` — View all citation styles.
+        - `↩` or `⌘↩` — Copy citation in selected style.
+        - `⌥↩` — Copy bibliography-style citation in selected style.
+        - `^↩` — Set style as default.
+    - This search can also be triggered by typing a snippet (which you must first assign yourself in Alfred Preferences)
+    - When the Better-Bibtex plugin for Zotero is installed and `COPY_CITEKEY_MOD` is set to any of `-`(no modifier), `alt`, `ctrl`, `cmd`, `fn`, `shift`, the "Copy citekey" functionality can be enabled to override above operations
+
+- `zot:[&lt;query&gt;]` — Search a specific field.
+    - `↩` — Select a field to search against.
+- `zotconf [&lt;query&gt;]` — View and edit workflow configuration.
+    - `Default Style: …` — Choose a citation style for the `⌘↩` and `⌥↩` hotkeys (on search results).
+    - `Locale: …` — Choose a locale for the formatting of citations. If unset, the default for the style is used, or if none is set, US English.
+    - `Reload Zotero Cache` — Clear the workflow's cache of Zotero data. Useful if the workflow gets out of sync with Zotero.
+    - `Open Log File` — Open the workflows log file in the default app (usually Console.app). Useful for checking on indexing problems (the indexer output isn't visible in Alfred's debugger).
+    - `View Documentation` — Open this README in your browser.
+    - `Report an Issue` — Open the GitHub issue tracker in your browser.</string>
 	<key>uidata</key>
 	<dict>
 		<key>01395D7D-4E59-4FB9-8369-9578C42822C6</key>
@@ -2625,17 +2558,6 @@ Search your Zotero database and copy citations.
 			<key>ypos</key>
 			<real>875</real>
 		</dict>
-		<key>C75ABE16-D510-4099-BE4B-7BB579DA8435</key>
-		<dict>
-			<key>colorindex</key>
-			<integer>12</integer>
-			<key>note</key>
-			<string>OneUpdater</string>
-			<key>xpos</key>
-			<real>355</real>
-			<key>ypos</key>
-			<real>475</real>
-		</dict>
 		<key>C93018EF-4629-4261-B997-453D8F2D6856</key>
 		<dict>
 			<key>colorindex</key>
@@ -2868,7 +2790,7 @@ Search your Zotero database and copy citations.
 	<key>variablesdontexport</key>
 	<array/>
 	<key>version</key>
-	<string>2.0</string>
+	<string>2.0.1</string>
 	<key>webaddress</key>
 	<string>https://github.com/giovannicoppola/zothero/</string>
 </dict>
