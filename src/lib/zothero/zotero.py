@@ -58,7 +58,8 @@ SELECT  items.itemID AS id,
     LEFT JOIN deletedItems
         ON items.itemID = deletedItems.itemID
 -- Ignore notes and attachments
-WHERE items.itemTypeID not IN (1, 14)
+WHERE itemTypes.typeName not like '%note%'
+AND itemTypes.typeName not like '%attachment%'
 AND deletedItems.dateDeleted IS NULL
 """
 
@@ -253,14 +254,17 @@ class Zotero(object):
         """Iterate Entries modified since datetime."""
         sql = ITEMS_SQL + 'AND modified > ?'
         ts = dt2sqlite(dt)
+        modified_ids = []
         for row in self.conn.execute(sql, (ts,)):
+            modified_ids.append(row["id"])
             yield self._load_entry(row)
 
         # Items whose attachments have changed
         sql = MODIFIED_ATTACHMENTS_SQL
         for row in self.conn.execute(sql, (ts,)):
             log.debug('[zotero] attachment(s) modified')
-            yield self.entry(row['key'])
+            if self.entry(row['key'])["id"] not in modified_ids:
+                yield self.entry(row['key'])
 
     def all_entries(self):
         """Return all database entries."""

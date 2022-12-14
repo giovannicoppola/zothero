@@ -65,15 +65,10 @@ COPY_CITEKEY_MOD = os.getenv('COPY_CITEKEY_MOD')
 # Set if workflow was run via Snippet Trigger
 AUTOPASTE = os.getenv('autopaste')
 
-# GitHub repo to check for updates
-UPDATE_SETTINGS = {
-    'github_slug': 'deanishe/zothero',
-    'prereleases': '-beta' in (os.getenv('alfred_workflow_version') or ''),
-}
 
 # URLs for help & docs
 URL_ISSUES = 'https://github.com/giovannicoppola/zothero/issues'
-URL_DOCS = 'https://github.com/deanishe/zothero/blob/master/README.md'
+URL_DOCS = 'https://github.com/giovannicoppola/zothero/blob/master/README.md'
 
 # Workflow icons
 ICON_CITATION = 'icons/citation.png'
@@ -411,23 +406,6 @@ def do_config(query):
             log.debug(u'Default style: %s', style.name)
 
     items = []  # (item params, variables) tuples
-    if wf.update_available:
-        items.append((dict(
-            title='An Update is Available',
-            subtitle=u'↩ or ⇥ to install',
-            autocomplete='workflow:update',
-            valid=False,
-            icon=ICON_UPDATE_AVAILABLE,
-        ), {}))
-
-    else:
-        items.append((dict(
-            title='Workflow is Up To Date',
-            subtitle=u'↩ or ⇥ to force update check',
-            autocomplete='workflow:update',
-            valid=False,
-            icon=ICON_UPDATE_OK,
-        ), {}))
 
     # Style
     icon = ICON_OFF
@@ -765,7 +743,6 @@ def main(wf):
 
 if __name__ == '__main__':
     wf = Workflow3(
-        update_settings=UPDATE_SETTINGS,
         help_url=URL_ISSUES,
     )
     log = wf.logger
