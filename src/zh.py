@@ -161,6 +161,11 @@ def do_search(query):
     # Create and send Alfred feedback
     for i, e in enumerate(entries):
         #log.debug(u'%4d. %s', i + 1, e)
+        # log.info ("=============================")
+        # log.info (e)
+        # log.info (e.creators)
+        # log.info (e.citekey)
+        # log.info ("=============================")
         f = EntryFormatter(e)
         sub = u'{} {}'.format(f.creators, f.year)
         key = u'{}_{}'.format(e.library, e.key)

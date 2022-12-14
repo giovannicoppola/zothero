@@ -37,14 +37,18 @@ class BetterBibTex(object):
             RuntimeError: Raised if Better Bibtex database doesn't exist.
 
         """
+        
         self._refkeys = {}
         self.exists = False
         dbpath = os.path.join(datadir, 'better-bibtex.sqlite')
+        log.info(f'========{dbpath}===================================😃😃😃😃😃')
         if not os.path.exists(dbpath):
             return
 
         conn = sqlite3.connect(dbpath)
+        
         with timed('load Better Bibtex data'):
+            
             row = conn.execute(SQL).fetchone()
             data = json.loads(row[0])['data']
             self._refkeys = {
@@ -63,4 +67,5 @@ class BetterBibTex(object):
             unicode: Citekey
 
         """
+        
         return self._refkeys.get(key)
