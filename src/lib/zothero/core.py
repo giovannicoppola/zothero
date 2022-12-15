@@ -17,6 +17,7 @@ import os
 from .config import read as read_config
 from .util import copyifnewer, unicodify, shortpath
 
+
 # Default location of Zotero's data in version 5
 DEFAULT_ZOTERO_DIR = u'~/Zotero'
 
@@ -72,6 +73,8 @@ class ZotHero(object):
         log.debug('[core] cachedir=%r', shortpath(cachedir))
         log.debug('[core] zotero_dir=%r', shortpath(self.zotero_dir))
         log.debug('[core] attachments_dir=%r', shortpath(self.attachments_dir))
+        
+       
 
     @property
     def zotero_dir(self):
@@ -118,6 +121,7 @@ class ZotHero(object):
 
         """
         from .zotero import Zotero
+        
 
         if not self._zot:
             original = os.path.join(self.zotero_dir, 'zotero.sqlite')
@@ -132,6 +136,9 @@ class ZotHero(object):
             # Validate paths by calling storage & styles properties
             log.debug('[core] storage=%r', shortpath(self._zot.storage_dir))
             log.debug('[core] styles=%r', shortpath(self._zot.styles_dir))
+            
+
+            
 
         return self._zot
 

@@ -37,6 +37,7 @@ from .util import (
     shortpath,
     strip_tags,
     sqlite2dt,
+    copyifnewer,
     time_since,
 )
 
@@ -173,11 +174,19 @@ class Zotero(object):
 
         """
         self.datadir = datadir
+        self.WF_CACHE = os.getenv('alfred_workflow_cache')
+        
         
         self._attachments_dir = attachments_base_dir
         self.dbpath = dbpath or os.path.join(datadir, 'zotero.sqlite')
         self._conn = None
         self._bbt = None  # BetterBibTex
+        
+        self.originalBib = os.path.join(datadir, 'better-bibtex.sqlite')
+        self.bibpath = os.path.join(self.WF_CACHE, 'better-bibtex.sqlite')
+        
+        
+        
         
 
     @property
@@ -196,10 +205,13 @@ class Zotero(object):
         """Return BetterBibTex."""
         
         if not self._bbt:
+            
+            self.bibpath_copy = copyifnewer(self.originalBib, self.bibpath)
+
 
             from .betterbibtex import BetterBibTex
             
-            self._bbt = BetterBibTex(self.datadir)
+            self._bbt = BetterBibTex(self.bibpath_copy)
             #self._bbt = BetterBibTex(self.dbpath)
             if self._bbt.exists:
                 log.debug('[zotero] loaded BetterBibTex data')
