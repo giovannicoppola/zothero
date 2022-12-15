@@ -183,7 +183,7 @@ class Zotero(object):
     @property
     def conn(self):
         """Return connection to the database."""
-        
+       
         if not self._conn:
             self._conn = sqlite3.connect(self.dbpath)
             self._conn.row_factory = sqlite3.Row
@@ -196,9 +196,11 @@ class Zotero(object):
         """Return BetterBibTex."""
         
         if not self._bbt:
+
             from .betterbibtex import BetterBibTex
             
-            self._bbt = BetterBibTex(self.dbpath)
+            self._bbt = BetterBibTex(self.datadir)
+            #self._bbt = BetterBibTex(self.dbpath)
             if self._bbt.exists:
                 log.debug('[zotero] loaded BetterBibTex data')
 
@@ -214,6 +216,7 @@ class Zotero(object):
     @property
     def storage_dir(self):
         """Path to Zotero's internal directory for attachments."""
+        
         return os.path.join(self.datadir, 'storage')
 
     @property
@@ -326,7 +329,6 @@ class Zotero(object):
         e.tags = self._entry_tags(e.id)
 
         # Better Bibtex citekey
-        log.info(f'========{self.datadir}===================================😃😃😃😃😃')
         e.citekey = self.bbt.citekey('{}_{}'.format(e.library, e.key))
 
         return e

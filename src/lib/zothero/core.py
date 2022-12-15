@@ -126,7 +126,7 @@ class ZotHero(object):
 
             # Ensure cached copy of database is up to date
             dbpath = copyifnewer(original, self._copy_path)
-
+            
             self._zot = Zotero(self.zotero_dir, dbpath, self.attachments_dir)
 
             # Validate paths by calling storage & styles properties

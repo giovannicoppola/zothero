@@ -2685,27 +2685,6 @@ These are the workflow's default keywords in Alfred:
 			<key>config</key>
 			<dict>
 				<key>default</key>
-				<string></string>
-				<key>placeholder</key>
-				<string></string>
-				<key>required</key>
-				<false/>
-				<key>trim</key>
-				<true/>
-			</dict>
-			<key>description</key>
-			<string>if you have set a "Linked Attachment Base Directory" in Zotero, but the workflow can't find the directory, enter its path here</string>
-			<key>label</key>
-			<string>Attachments Directory</string>
-			<key>type</key>
-			<string>textfield</string>
-			<key>variable</key>
-			<string>ATTACHMENTS_DIR</string>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>default</key>
 				<string>http://www.zotero.org/styles/chicago-author-date</string>
 				<key>placeholder</key>
 				<string></string>
@@ -2722,27 +2701,6 @@ These are the workflow's default keywords in Alfred:
 			<string>textfield</string>
 			<key>variable</key>
 			<string>CITE_STYLE</string>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>default</key>
-				<string></string>
-				<key>placeholder</key>
-				<string></string>
-				<key>required</key>
-				<false/>
-				<key>trim</key>
-				<true/>
-			</dict>
-			<key>description</key>
-			<string>When the Better-Bibtex plugin for Zotero is installed and `COPY_CITEKEY_MOD` is set to any of `-`(no modifier), `alt`, `ctrl`, `cmd`, `fn`, `shift`, the "Copy citekey" functionality can be enabled to override above operations</string>
-			<key>label</key>
-			<string>Copy Citekey Mod</string>
-			<key>type</key>
-			<string>textfield</string>
-			<key>variable</key>
-			<string>COPY_CITEKEY_MOD</string>
 		</dict>
 		<dict>
 			<key>config</key>
@@ -2770,27 +2728,94 @@ These are the workflow's default keywords in Alfred:
 			<dict>
 				<key>default</key>
 				<string></string>
+				<key>pairs</key>
+				<array>
+					<array>
+						<string>None</string>
+						<string></string>
+					</array>
+					<array>
+						<string>Enter (no modifier)</string>
+						<string>-</string>
+					</array>
+					<array>
+						<string>ALT</string>
+						<string>alt</string>
+					</array>
+					<array>
+						<string>CTRL</string>
+						<string>ctrl</string>
+					</array>
+					<array>
+						<string>CMD</string>
+						<string>cmd</string>
+					</array>
+					<array>
+						<string>FN</string>
+						<string>fn</string>
+					</array>
+					<array>
+						<string>SHIFT</string>
+						<string>shift</string>
+					</array>
+				</array>
+			</dict>
+			<key>description</key>
+			<string>When the Better-Bibtex plugin for Zotero is installed and `COPY_CITEKEY_MOD` is set to any of `-`(no modifier), `alt`, `ctrl`, `cmd`, `fn`, `shift`, the "Copy citekey" functionality can be enabled to override above operations</string>
+			<key>label</key>
+			<string>Copy Citekey Mod</string>
+			<key>type</key>
+			<string>popupbutton</string>
+			<key>variable</key>
+			<string>COPY_CITEKEY_MOD</string>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>default</key>
+				<string></string>
+				<key>filtermode</key>
+				<integer>1</integer>
+				<key>placeholder</key>
+				<string>~/Zotero</string>
+				<key>required</key>
+				<false/>
+			</dict>
+			<key>description</key>
+			<string>Path to your Zotero data. Read from Zotero's config by default. Edit the `ZOTERO_DIR` variable to point to Zotero's data directory if you aren't using the default (~/Zotero).</string>
+			<key>label</key>
+			<string>Zotero Directory</string>
+			<key>type</key>
+			<string>filepicker</string>
+			<key>variable</key>
+			<string>ZOTERO_DIR</string>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>default</key>
+				<string></string>
+				<key>filtermode</key>
+				<integer>1</integer>
 				<key>placeholder</key>
 				<string></string>
 				<key>required</key>
 				<false/>
-				<key>trim</key>
-				<true/>
 			</dict>
 			<key>description</key>
-			<string>Path to your Zotero data. Read from Zotero's config by default. Edit the `ZOTERO_DIR` variable to point to Zotero 5's data directory if you aren't using the default (~/Zotero).</string>
+			<string>if you have set a "Linked Attachment Base Directory" in Zotero, but the workflow can't find the directory, enter its path here</string>
 			<key>label</key>
-			<string>Zotero Directory</string>
+			<string>Attachments Directory</string>
 			<key>type</key>
-			<string>textfield</string>
+			<string>filepicker</string>
 			<key>variable</key>
-			<string>ZOTERO_DIR</string>
+			<string>ATTACHMENTS_DIR</string>
 		</dict>
 	</array>
 	<key>variablesdontexport</key>
 	<array/>
 	<key>version</key>
-	<string>2.0.1</string>
+	<string>2.1</string>
 	<key>webaddress</key>
 	<string>https://github.com/giovannicoppola/zothero/</string>
 </dict>

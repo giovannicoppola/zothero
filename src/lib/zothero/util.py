@@ -88,7 +88,7 @@ class HTMLText(HTMLParser):
         """
         p = cls()
         p.feed(html)
-        #log.debug ("=====================")
+        
         #log.debug (html)
         return str(p)
         #return unicode(p)

@@ -41,8 +41,9 @@ class BetterBibTex(object):
         self._refkeys = {}
         self.exists = False
         dbpath = os.path.join(datadir, 'better-bibtex.sqlite')
-        log.info(f'========{dbpath}===================================😃😃😃😃😃')
+        
         if not os.path.exists(dbpath):
+            
             return
 
         conn = sqlite3.connect(dbpath)
