@@ -1,0 +1,520 @@
+<rdf:RDF
+ xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+ xmlns:z="http://www.zotero.org/namespaces/export#"
+ xmlns:dcterms="http://purl.org/dc/terms/"
+ xmlns:bib="http://purl.org/net/biblio#"
+ xmlns:foaf="http://xmlns.com/foaf/0.1/"
+ xmlns:dc="http://purl.org/dc/elements/1.1/"
+ xmlns:prism="http://prismstandard.org/namespaces/1.2/basic/">
+    <bib:Article rdf:about="#item_1564">
+        <z:itemType>journalArticle</z:itemType>
+        <dcterms:isPartOf rdf:resource="urn:issn:15449173"/>
+        <bib:authors>
+            <rdf:Seq>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Bild</foaf:surname>
+                        <foaf:givenName>Andrea H.</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Chang</foaf:surname>
+                        <foaf:givenName>Jeffrey T.</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Johnson</foaf:surname>
+                        <foaf:givenName>W. Evan</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Piccolo</foaf:surname>
+                        <foaf:givenName>Stephen R.</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+            </rdf:Seq>
+        </bib:authors>
+        <dc:title>A Field Guide to Genomics Research</dc:title>
+        <dcterms:abstract>Portraying high-throughput genomics research as a wild frontier, Andrea Bild and colleagues use caricatures to highlight common pitfalls in genomic research and provide recommendations for navigating this terrain.</dcterms:abstract>
+        <dc:date>2014</dc:date>
+        <dc:description>PMID: 24409093</dc:description>
+        <bib:pages>1–6</bib:pages>
+    </bib:Article>
+    <bib:Journal rdf:about="urn:issn:15449173">
+        <prism:volume>12</prism:volume>
+        <dc:title>PLoS Biology</dc:title>
+        <dc:identifier>DOI 10.1371/journal.pbio.1001744</dc:identifier>
+        <prism:number>1</prism:number>
+        <dc:identifier>ISSN 15449173</dc:identifier>
+    </bib:Journal>
+    <bib:Article rdf:about="http://www.ncbi.nlm.nih.gov/pubmed/16872830">
+        <z:itemType>journalArticle</z:itemType>
+        <dcterms:isPartOf rdf:resource="urn:issn:09699961"/>
+        <bib:authors>
+            <rdf:Seq>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Arthur-Farraj</foaf:surname>
+                        <foaf:givenName>Peter</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Mirsky</foaf:surname>
+                        <foaf:givenName>Rhona</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Parkinson</foaf:surname>
+                        <foaf:givenName>David B.</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Jessen</foaf:surname>
+                        <foaf:givenName>Kristjan R.</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+            </rdf:Seq>
+        </bib:authors>
+        <dc:subject>Rats</dc:subject>
+        <dc:subject>Alleles</dc:subject>
+        <dc:subject>DNA</dc:subject>
+        <dc:subject>Membrane Proteins</dc:subject>
+        <dc:subject>Membrane Proteins: genetics</dc:subject>
+        <dc:subject>Nervous System Diseases</dc:subject>
+        <dc:subject>Nervous System Diseases: genetics</dc:subject>
+        <dc:subject>Signal Transduction</dc:subject>
+        <dc:subject>DNA: metabolism</dc:subject>
+        <dc:subject>Animals</dc:subject>
+        <dc:subject>Repressor Proteins</dc:subject>
+        <dc:subject>Signal Transduction: physiology</dc:subject>
+        <dc:subject>Repressor Proteins: genetics</dc:subject>
+        <dc:subject>Blotting</dc:subject>
+        <dc:subject>Western</dc:subject>
+        <dc:subject>Point Mutation</dc:subject>
+        <dc:subject>Neoplasm Proteins</dc:subject>
+        <dc:subject>Neoplasm Proteins: genetics</dc:subject>
+        <dc:subject>Immunohistochemistry</dc:subject>
+        <dc:subject>Cell Proliferation</dc:subject>
+        <dc:subject>Early Growth Response Protein 2</dc:subject>
+        <dc:subject>Early Growth Response Protein 2: genetics</dc:subject>
+        <dc:subject>Myelin Sheath</dc:subject>
+        <dc:subject>Myelin Sheath: genetics</dc:subject>
+        <dc:subject>Early Growth Response Protein 2: metabolism</dc:subject>
+        <dc:subject>Proto-Oncogene Proteins c-jun</dc:subject>
+        <dc:subject>Schwann Cells</dc:subject>
+        <dc:subject>Schwann Cells: metabolism</dc:subject>
+        <dc:subject>Cell Death</dc:subject>
+        <dc:subject>Antimetabolites</dc:subject>
+        <dc:subject>Antimetabolites: diagnostic use</dc:subject>
+        <dc:subject>Bromodeoxyuridine</dc:subject>
+        <dc:subject>Bromodeoxyuridine: diagnostic use</dc:subject>
+        <dc:subject>Cell Death: genetics</dc:subject>
+        <dc:subject>Cell Death: physiology</dc:subject>
+        <dc:subject>Cell Survival</dc:subject>
+        <dc:subject>Cell Survival: physiology</dc:subject>
+        <dc:subject>Membrane Proteins: biosynthesis</dc:subject>
+        <dc:subject>Myelin P0 Protein</dc:subject>
+        <dc:subject>Myelin P0 Protein: genetics</dc:subject>
+        <dc:subject>Neoplasm Proteins: biosynthesis</dc:subject>
+        <dc:subject>Nervous System Diseases: congenital</dc:subject>
+        <dc:subject>Neuregulin-1</dc:subject>
+        <dc:subject>Neuregulin-1: genetics</dc:subject>
+        <dc:subject>Proto-Oncogene Proteins c-jun: biosynthesis</dc:subject>
+        <dc:subject>Proto-Oncogene Proteins c-jun: genetics</dc:subject>
+        <dc:subject>Repressor Proteins: biosynthesis</dc:subject>
+        <dc:subject>Transforming Growth Factor beta</dc:subject>
+        <dc:subject>Transforming Growth Factor beta: genetics</dc:subject>
+        <dc:title>A double point mutation in the DNA-binding region of Egr2 switches its function from inhibition to induction of proliferation: A potential contribution to the development of congenital hypomyelinating neuropathy</dc:title>
+        <dcterms:abstract>Mutations in the DNA-binding domain of EGR2 are associated with severe autosomal dominant forms of peripheral neuropathy. In this study, we show that one such Egr2 mutant (S382R, D383Y), when expressed in Schwann cells in vitro, is not transcriptionally inactive but retains residual wild-type Egr2 functions, including inhibition of transforming growth factor-beta-induced Schwann cell death and an ability to induce the cytoskeletal protein periaxin. More importantly, this mutant Egr2 has aberrant effects in Schwann cells, enhancing DNA synthesis both in the presence and absence of the putative axonal mitogen, beta-neuregulin 1. This is in stark contrast to wild-type Egr2, which causes withdrawal from the cell cycle. Furthermore, mutant Egr2 upregulates cyclin D1 and reduces levels of the cell cycle inhibitor, p27. These observations add significant new evidence to explain how this mutation leads to congenital hypomyelinating neuropathy in humans.</dcterms:abstract>
+        <dc:date>October 2006</dc:date>
+        <dc:identifier>
+            <dcterms:URI>
+               <rdf:value>http://www.ncbi.nlm.nih.gov/pubmed/16872830</rdf:value>
+            </dcterms:URI>
+        </dc:identifier>
+        <dc:description>PMID: 16872830</dc:description>
+        <bib:pages>159–169</bib:pages>
+    </bib:Article>
+    <bib:Journal rdf:about="urn:issn:09699961">
+        <prism:volume>24</prism:volume>
+        <dc:title>Neurobiology of Disease</dc:title>
+        <dc:identifier>DOI 10.1016/j.nbd.2006.06.006</dc:identifier>
+        <prism:number>1</prism:number>
+        <dc:identifier>ISSN 09699961</dc:identifier>
+    </bib:Journal>
+    <bib:Article rdf:about="#item_2621">
+        <z:itemType>journalArticle</z:itemType>
+        <dcterms:isPartOf>
+            <bib:Journal>
+                <prism:volume>28</prism:volume>
+                <dc:title>J. Neurosci.</dc:title>
+                <prism:number>28</prism:number>
+            </bib:Journal>
+        </dcterms:isPartOf>
+        <bib:authors>
+            <rdf:Seq>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Atasoy</foaf:surname>
+                        <foaf:givenName>Deniz</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Aponte</foaf:surname>
+                        <foaf:givenName>Yexica</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Su</foaf:surname>
+                        <foaf:givenName>Helen Hong</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Sternson</foaf:surname>
+                        <foaf:givenName>Scott M</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+            </rdf:Seq>
+        </bib:authors>
+        <dc:subject>Zotero Library (Sep 16 2015)</dc:subject>
+        <dc:subject>Cell Line</dc:subject>
+        <dc:subject>Mice</dc:subject>
+        <dc:subject>Gene Expression Regulation</dc:subject>
+        <dc:subject>Transfection</dc:subject>
+        <dc:subject>Transgenic</dc:subject>
+        <dc:subject>Nerve Net</dc:subject>
+        <dc:subject>Dependovirus</dc:subject>
+        <dc:subject>Diagnostic Imaging</dc:subject>
+        <dc:subject>Computer-Assisted</dc:subject>
+        <dc:subject>Image Processing</dc:subject>
+        <dc:subject>Green Fluorescent Proteins</dc:subject>
+        <dc:subject>Excitatory Amino Acid Antagonists</dc:subject>
+        <dc:subject>Excitatory Amino Acid Antagonists: pharmacology</dc:subject>
+        <dc:subject>Brain Mapping</dc:subject>
+        <dc:subject>Nerve Net: metabolism</dc:subject>
+        <dc:subject>Transformed</dc:subject>
+        <dc:subject>3-dione</dc:subject>
+        <dc:subject>3-dione: pharmacology</dc:subject>
+        <dc:subject>6-Cyano-7-nitroquinoxaline-2</dc:subject>
+        <dc:subject>Arcuate Nucleus</dc:subject>
+        <dc:subject>Arcuate Nucleus: anatomy &amp; histology</dc:subject>
+        <dc:subject>Arcuate Nucleus: physiology</dc:subject>
+        <dc:subject>Dependovirus: physiology</dc:subject>
+        <dc:subject>Green Fluorescent Proteins: biosynthesis</dc:subject>
+        <dc:subject>Membrane Potentials</dc:subject>
+        <dc:subject>Membrane Potentials: drug effects</dc:subject>
+        <dc:subject>Membrane Potentials: physiology</dc:subject>
+        <dc:subject>Membrane Potentials: radiation effects</dc:subject>
+        <dc:subject>Patch-Clamp Techniques</dc:subject>
+        <dc:subject>Patch-Clamp Techniques: methods</dc:subject>
+        <dc:subject>Photic Stimulation</dc:subject>
+        <dc:subject>Photic Stimulation: methods</dc:subject>
+        <dc:subject>Rhodopsin</dc:subject>
+        <dc:subject>Rhodopsin: genetics</dc:subject>
+        <dc:subject>Rhodopsin: metabolism</dc:subject>
+        <dc:title>A FLEX switch targets Channelrhodopsin-2 to multiple cell types for imaging and long-range circuit mapping</dc:title>
+        <dc:date>July 2008</dc:date>
+        <bib:pages>7025–30</bib:pages>
+    </bib:Article>
+    <bib:Article rdf:about="#item_3055">
+        <z:itemType>journalArticle</z:itemType>
+        <dcterms:isPartOf>
+            <bib:Journal>
+                <prism:volume>5</prism:volume>
+                <dc:title>PLoS Comput. Biol.</dc:title>
+                <prism:number>5</prism:number>
+            </bib:Journal>
+        </dcterms:isPartOf>
+        <bib:authors>
+            <rdf:Seq>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Hudson</foaf:surname>
+                        <foaf:givenName>Nicholas J</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Reverter</foaf:surname>
+                        <foaf:givenName>Antonio</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Dalrymple</foaf:surname>
+                        <foaf:givenName>Brian P</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+            </rdf:Seq>
+        </bib:authors>
+        <dc:subject>Zotero Library (Sep 16 2015)</dc:subject>
+        <dc:subject>network</dc:subject>
+        <dc:title>A differential wiring analysis of expression data correctly identifies the gene containing the causal mutation</dc:title>
+        <dcterms:abstract>Transcription factor (TF) regulation is often post-translational. TF modifications such as reversible phosphorylation and missense mutations, which can act independent of TF expression level, are overlooked by differential expression analysis. Using bovine Piedmontese myostatin mutants as proof-of-concept, we propose a new algorithm that correctly identifies the gene containing the causal mutation from microarray data alone. The myostatin mutation releases the brakes on Piedmontese muscle growth by translating a dysfunctional protein. Compared to a less muscular non-mutant breed we find that myostatin is not differentially expressed at any of ten developmental time points. Despite this challenge, the algorithm identifies the myostatin 'smoking gun' through a coordinated, simultaneous, weighted integration of three sources of microarray information: transcript abundance, differential expression, and differential wiring. By asking the novel question “which regulator is cumulatively most differentially wired to the abundant most differentially expressed genes?” it yields the correct answer, “myostatin”. Our new approach identifies causal regulatory changes by globally contrasting co-expression network dynamics. The entirely data-driven 'weighting' procedure emphasises regulatory movement relative to the phenotypically relevant part of the network. In contrast to other published methods that compare co-expression networks, significance testing is not used to eliminate connections.</dcterms:abstract>
+        <dc:date>May 2009</dc:date>
+        <bib:pages>e1000382</bib:pages>
+    </bib:Article>
+    <bib:Article rdf:about="#item_3169">
+        <z:itemType>journalArticle</z:itemType>
+        <dcterms:isPartOf>
+            <bib:Journal>
+                <prism:volume>78</prism:volume>
+                <dc:title>Am. J. Hum. Genet.</dc:title>
+                <prism:number>4</prism:number>
+            </bib:Journal>
+        </dcterms:isPartOf>
+        <bib:authors>
+            <rdf:Seq>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Scheet</foaf:surname>
+                        <foaf:givenName>Paul</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Stephens</foaf:surname>
+                        <foaf:givenName>Matthew</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+            </rdf:Seq>
+        </bib:authors>
+        <dc:subject>Zotero Library (Sep 16 2015)</dc:subject>
+        <dc:subject>Genetics</dc:subject>
+        <dc:subject>Models</dc:subject>
+        <dc:subject>Statistical</dc:subject>
+        <dc:subject>Population</dc:subject>
+        <dc:subject>Genotype</dc:subject>
+        <dc:subject>Haplotypes</dc:subject>
+        <dc:subject>Probability</dc:subject>
+        <dc:subject>Calibration</dc:subject>
+        <dc:title>A fast and flexible statistical model for large-scale population genotype data: applications to inferring missing genotypes and haplotypic phase</dc:title>
+        <dcterms:abstract>We present a statistical model for patterns of genetic variation in samples of unrelated individuals from natural populations. This model is based on the idea that, over short regions, haplotypes in a population tend to cluster into groups of similar haplotypes. To capture the fact that, because of recombination, this clustering tends to be local in nature, our model allows cluster memberships to change continuously along the chromosome according to a hidden Markov model. This approach is flexible, allowing for both “block-like” patterns of linkage disequilibrium (LD) and gradual decline in LD with distance. The resulting model is also fast and, as a result, is practicable for large data sets (e.g., thousands of individuals typed at hundreds of thousands of markers). We illustrate the utility of the model by applying it to dense single-nucleotide-polymorphism genotype data for the tasks of imputing missing genotypes and estimating haplotypic phase. For imputing missing genotypes, methods based on this model are as accurate or more accurate than existing methods. For haplotype estimation, the point estimates are slightly less accurate than those from the best existing methods (e.g., for unrelated Centre d'Etude du Polymorphisme Humain individuals from the HapMap project, switch error was 0.055 for our method vs. 0.051 for PHASE) but require a small fraction of the computational cost. In addition, we demonstrate that the model accurately reflects uncertainty in its estimates, in that probabilities computed using the model are approximately well calibrated. The methods described in this article are implemented in a software package, fastPHASE, which is available from the Stephens Lab Web site.</dcterms:abstract>
+        <dc:date>April 2006</dc:date>
+        <bib:pages>629–44</bib:pages>
+    </bib:Article>
+    <bib:Article rdf:about="#item_3283">
+        <z:itemType>journalArticle</z:itemType>
+        <dcterms:isPartOf>
+           <bib:Journal><dc:title>Genome Res.</dc:title></bib:Journal>
+        </dcterms:isPartOf>
+        <bib:authors>
+            <rdf:Seq>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Easwaran</foaf:surname>
+                        <foaf:givenName>Hariharan</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Johnstone</foaf:surname>
+                        <foaf:givenName>Sarah</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Vanneste</foaf:surname>
+                        <foaf:givenName>Leander</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Ohm</foaf:surname>
+                        <foaf:givenName>Joyce</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Mosbruger</foaf:surname>
+                        <foaf:givenName>Tim</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Wang</foaf:surname>
+                        <foaf:givenName>Qiuju</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Aryee</foaf:surname>
+                        <foaf:givenName>Martin J</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Joyce</foaf:surname>
+                        <foaf:givenName>Patrick</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Ahuja</foaf:surname>
+                        <foaf:givenName>Nita</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Weisenberger</foaf:surname>
+                        <foaf:givenName>Dan</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Collisson</foaf:surname>
+                        <foaf:givenName>Eric</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Zhu</foaf:surname>
+                        <foaf:givenName>Jing-Chun</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Yegnasubramanian</foaf:surname>
+                        <foaf:givenName>Srinivasan</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Matsui</foaf:surname>
+                        <foaf:givenName>William</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Baylin</foaf:surname>
+                        <foaf:givenName>Stephen B</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+            </rdf:Seq>
+        </bib:authors>
+        <dc:subject>Zotero Library (Sep 16 2015)</dc:subject>
+        <dc:title>A DNA hypermethylation module for the stem/progenitor cell signature of cancer</dc:title>
+        <dcterms:abstract>Many DNA-hypermethylated cancer genes are occupied by the polycomb (PcG) repressor complex in embryonic stem cells (ESC). Their prevalence in the full spectrum of cancers, the exact context of chromatin involved, and their status in adult cell renewal systems are unknown. Using a genome-wide analysis, we demonstrate that approximately 75% of hypermethylated genes are marked by PcG in the context of bivalent chromatin in both ESC and adult stem/progenitor cells. A large number of these genes are key developmental regulators and a subset, which we call the “DNA hypermethylation module”, comprise a portion of the PcG target genes that are downregulated in cancer. Genes with bivalent chromatin have a low, poised gene transcription state that has been shown to maintain stemness and self-renewal in normal stem cells. However, when DNA-hypermethylated in tumors, we find these genes are further repressed. We also show that the methylation status of these genes can cluster important subtypes of colon and breast cancers. By evaluating the subsets of genes that are methylated in different cancers with consideration of their chromatin status in ESCs, we provide evidence that DNA-hypermethylation preferentially targets the subset of PcG genes that are developmental regulators, and this may contribute to the stem-like state of cancer. Additionally, the capacity for global methylation profiling to cluster tumors by phenotype may have important implications for further refining tumor behavior patterns that may ultimately aid therapeutic interventions.</dcterms:abstract>
+        <dc:date>March 2012</dc:date>
+    </bib:Article>
+    <bib:Article rdf:about="#item_3666">
+        <z:itemType>journalArticle</z:itemType>
+        <dcterms:isPartOf>
+            <bib:Journal>
+                <prism:volume>31</prism:volume>
+                <dc:title>Genet. Epidemiol.</dc:title>
+                <prism:number>7</prism:number>
+            </bib:Journal>
+        </dcterms:isPartOf>
+        <bib:authors>
+            <rdf:Seq>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Ayers</foaf:surname>
+                        <foaf:givenName>K L</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Sabatti</foaf:surname>
+                        <foaf:givenName>C</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Lange</foaf:surname>
+                        <foaf:givenName>K</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+            </rdf:Seq>
+        </bib:authors>
+        <dc:subject>Zotero Library (Sep 16 2015)</dc:subject>
+        <dc:subject>association</dc:subject>
+        <dc:title>A dictionary model for haplotyping, genotype calling, and association testing</dc:title>
+        <dcterms:abstract>We propose a new method for haplotyping, genotype calling, and association testing based on a dictionary model for haplotypes. In this framework, a haplotype arises as a concatenation of conserved haplotype segments, drawn from a predefined dictionary according to segment specific probabilities. The observed data consist of unphased multimarker genotypes gathered on a random sample of unrelated individuals. These genotypes are subject to mutation, genotyping errors, and missing data. The true pair of haplotypes corresponding to a person's multimarker genotype is reconstructed using a Markov chain that visits haplotype pairs according to their posterior probabilities. Our implementation of the chain alternates Gibbs steps, which rearrange the phase of a single marker, and Metropolis steps, which swap maternal and paternal haplotypes from a given maker onward. Output of the chain include the most likely haplotype pairs, the most likely genotypes at each marker, and the expected number of occurrences of each haplotype segment. Reconstruction accuracy is comparable to that achieved by the best existing algorithms. More importantly, the dictionary model yields expected counts of conserved haplotype segments. These imputed counts can serve as genetic predictors in association studies, as we illustrate by examples on cystic fibrosis, Friedreich's ataxia, and angiotensin-I converting enzyme levels.</dcterms:abstract>
+        <dc:date>November 2007</dc:date>
+        <bib:pages>672–683</bib:pages>
+    </bib:Article>
+    <bib:Article rdf:about="#item_3783">
+        <z:itemType>journalArticle</z:itemType>
+        <dcterms:isPartOf>
+            <bib:Journal>
+                <prism:volume>131</prism:volume>
+                <dc:title>Hum. Genet.</dc:title>
+                <prism:number>10</prism:number>
+            </bib:Journal>
+        </dcterms:isPartOf>
+        <bib:authors>
+            <rdf:Seq>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Altmann</foaf:surname>
+                        <foaf:givenName>André</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Weber</foaf:surname>
+                        <foaf:givenName>Peter</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Bader</foaf:surname>
+                        <foaf:givenName>Daniel</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Preuss</foaf:surname>
+                        <foaf:givenName>Michael</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Binder</foaf:surname>
+                        <foaf:givenName>Elisabeth B</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+                <rdf:li>
+                    <foaf:Person>
+                        <foaf:surname>Müller-Myhsok</foaf:surname>
+                        <foaf:givenName>Bertram</foaf:givenName>
+                    </foaf:Person>
+                </rdf:li>
+            </rdf:Seq>
+        </bib:authors>
+        <dc:subject>Zotero Library (Sep 16 2015)</dc:subject>
+        <dc:subject>Software</dc:subject>
+        <dc:subject>Sequence Analysis</dc:subject>
+        <dc:subject>Computational Biology</dc:subject>
+        <dc:subject>DNA</dc:subject>
+        <dc:subject>Polymorphism</dc:subject>
+        <dc:subject>Single Nucleotide</dc:subject>
+        <dc:subject>DNA: methods</dc:subject>
+        <dc:subject>Computational Biology: methods</dc:subject>
+        <dc:subject>High-Throughput Nucleotide Sequencing</dc:subject>
+        <dc:title>A beginners guide to SNP calling from high-throughput DNA-sequencing data</dc:title>
+        <dcterms:abstract>High-throughput DNA sequencing (HTS) is of increasing importance in the life sciences. One of its most prominent applications is the sequencing of whole genomes or targeted regions of the genome such as all exonic regions (i.e., the exome). Here, the objective is the identification of genetic variants such as single nucleotide polymorphisms (SNPs). The extraction of SNPs from the raw genetic sequences involves many processing steps and the application of a diverse set of tools. We review the essential building blocks for a pipeline that calls SNPs from raw HTS data. The pipeline includes quality control, mapping of short reads to the reference genome, visualization and post-processing of the alignment including base quality recalibration. The final steps of the pipeline include the SNP calling procedure along with filtering of SNP candidates. The steps of this pipeline are accompanied by an analysis of a publicly available whole-exome sequencing dataset. To this end, we employ several alignment programs and SNP calling routines for highlighting the fact that the choice of the tools significantly affects the final results.</dcterms:abstract>
+        <dc:date>October 2012</dc:date>
+        <bib:pages>1541–54</bib:pages>
+    </bib:Article>
+    <z:Collection rdf:about="#collection_1">
+        <dc:title>FromPaperpile091615</dc:title>
+        <dcterms:hasPart rdf:resource="#item_2621"/>
+        <dcterms:hasPart rdf:resource="#item_3055"/>
+        <dcterms:hasPart rdf:resource="#item_3169"/>
+        <dcterms:hasPart rdf:resource="#item_3283"/>
+        <dcterms:hasPart rdf:resource="#item_3666"/>
+        <dcterms:hasPart rdf:resource="#item_3783"/>
+    </z:Collection>
+</rdf:RDF>
