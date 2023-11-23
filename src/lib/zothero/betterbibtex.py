@@ -37,26 +37,39 @@ class BetterBibTex(object):
             RuntimeError: Raised if Better Bibtex database doesn't exist.
 
         """
-        
+
         self._refkeys = {}
         self.exists = False
-        #dbpath = os.path.join(datadir, 'better-bibtex.sqlite')
         dbpath = datadir
-        
+
         if not os.path.exists(dbpath):
-            
             return
 
-        conn = sqlite3.connect(dbpath)
-        
-        with timed('load Better Bibtex data'):
-            
-            row = conn.execute(SQL).fetchone()
-            data = json.loads(row[0])['data']
-            self._refkeys = {
-                str(ck['libraryID']) + '_' + ck['itemKey']: ck['citekey']
-                for ck in data
-            }
+        conn = sqlite3.connect(":memory:")
+        conn.row_factory = sqlite3.Row
+        conn.execute("ATTACH DATABASE ? AS betterbibtex", (dbpath,))
+
+        # For newer version of Better Bibtex, a new table named `citationkey` is used.
+        row = conn.execute(
+            r"SELECT COUNT(*) FROM betterbibtex.sqlite_master WHERE type='table' AND name = 'citationkey'"
+        ).fetchone()
+        is_newer_better_bibtex = row[0] == 1
+
+        with timed("load Better Bibtex data"):
+            if is_newer_better_bibtex:
+                self._refkeys = {
+                    str(ck["libraryID"]) + "_" + ck["itemKey"]: ck["citationKey"]
+                    for ck in conn.execute(r"select * from betterbibtex.citationkey")
+                }
+            else:
+                row = conn.execute(
+                    r"SELECT data FROM `better-bibtex` WHERE name = 'better-bibtex.citekey';"
+                ).fetchone()
+                data = json.loads(row[0])["data"]
+                self._refkeys = {
+                    str(ck["libraryID"]) + "_" + ck["itemKey"]: ck["citekey"]
+                    for ck in data
+                }
         self.exists = True
 
     def citekey(self, key):
@@ -69,5 +82,5 @@ class BetterBibTex(object):
             unicode: Citekey
 
         """
-        
+
         return self._refkeys.get(key)
