@@ -28,6 +28,7 @@ src="https://img.shields.io/github/downloads/giovannicoppola/zothero/total?color
     - [All settings](#all-settings)
     - [Configuration sheet](#configuration-sheet)
 - [Licence & thanks](#licence--thanks)
+- [Changelog](#changelog)
 
 <!-- /MarkdownTOC -->
 
@@ -215,6 +216,13 @@ It was inspired by the now-defunct [ZotQuery][zotquery] by [@fractaledmind][smar
 The [Zorro icon][icon-source] was created by [Dan Lowenstein][lowenstein] from [the Noun Project][noun-project].
 
 
+<a name="changelog"></a>
+Changelog
+----------------
+
+- 2023-11-23 Version 2.2: added support for newer BetterBibtex (thanks [@fty1777](https://github.com/fty1777) and [@retorquere](https://github.com/retorquere))
+- 2022-12-15 Version 2.1
+- 2022-11-27 Version 2.0 updated for Alfred 5
 
 [alfred]: https://www.alfredapp.com/
 [aw]: http://www.deanishe.net/alfred-workflow/
