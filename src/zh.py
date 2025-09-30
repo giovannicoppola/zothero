@@ -355,7 +355,28 @@ def do_copy(style_key, entry_id, bib_style=False, paste=False):
     if not s:
         raise ValueError('Unknown Style: %r' % style_key)
 
-    data = app.styles.cite(e, s, bib_style, LOCALE)
+    try:
+        data = app.styles.cite(e, s, bib_style, LOCALE)
+    except Exception as ce:
+        log.error('[copy] citation generation failed: %s', str(ce))
+        # Check if this is the page_mangler error specifically
+        if 'page_mangler' in str(ce).lower():
+            # Try with a fallback style (APA) if the current style fails
+            try:
+                log.info('[copy] trying fallback style (APA) due to page_mangler error')
+                fallback_style = app.styles.get('http://www.zotero.org/styles/apa')
+                if fallback_style:
+                    data = app.styles.cite(e, fallback_style, bib_style, LOCALE)
+                    log.info('[copy] fallback style succeeded')
+                else:
+                    raise ValueError('Citation generation failed due to CSL engine compatibility issue. The citation style "%s" is not compatible with the current CSL engine. Please try using a different citation style (e.g., APA, MLA, or Chicago Author-Date).' % s.name)
+            except Exception as fallback_error:
+                log.error('[copy] fallback style also failed: %s', str(fallback_error))
+                raise ValueError('Citation generation failed due to CSL engine compatibility issue. The citation style "%s" is not compatible with the current CSL engine. Please try using a different citation style (e.g., APA, MLA, or Chicago Author-Date).' % s.name)
+        elif 'timeout' in str(ce).lower():
+            raise ValueError('Citation generation timed out. This reference may have malformed data. Please check the reference data in Zotero.')
+        else:
+            raise ValueError('Citation generation failed: %s' % str(ce))
 
     ## Copying to clipboard
     # import subprocess

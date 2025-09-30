@@ -138,8 +138,11 @@ class Entry(AttrDict):
             dict: Entry data converted to CSL types.
 
         """
-        from .csl import entry_data
-        return entry_data(self)
+        # Cache CSL data to avoid regenerating it multiple times
+        if not hasattr(self, '_csl_cache'):
+            from .csl import entry_data
+            self._csl_cache = entry_data(self)
+        return self._csl_cache
 
     @property
     def csljson(self):

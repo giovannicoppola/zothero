@@ -1005,6 +1005,11 @@ variables={allvars}
 			<integer>1</integer>
 		</dict>
 		<dict>
+			<key>config</key>
+			<dict>
+				<key>unstackview</key>
+				<false/>
+			</dict>
 			<key>type</key>
 			<string>alfred.workflow.utility.hidealfred</string>
 			<key>uid</key>
@@ -1444,6 +1449,11 @@ python3 zh.py copy $flags "$style" "$id"</string>
 			<integer>1</integer>
 		</dict>
 		<dict>
+			<key>config</key>
+			<dict>
+				<key>unstackview</key>
+				<false/>
+			</dict>
 			<key>type</key>
 			<string>alfred.workflow.utility.hidealfred</string>
 			<key>uid</key>
@@ -2815,7 +2825,7 @@ These are the workflow's default keywords in Alfred:
 	<key>variablesdontexport</key>
 	<array/>
 	<key>version</key>
-	<string>2.2</string>
+	<string>2.3</string>
 	<key>webaddress</key>
 	<string>https://github.com/giovannicoppola/zothero/</string>
 </dict>

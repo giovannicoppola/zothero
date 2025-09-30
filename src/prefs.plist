@@ -4,5 +4,7 @@
 <dict>
 	<key>COPY_CITEKEY_MOD</key>
 	<string>ctrl</string>
+	<key>mainkeyword</key>
+	<string>zzot</string>
 </dict>
 </plist>
