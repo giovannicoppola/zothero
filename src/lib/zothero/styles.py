@@ -320,7 +320,7 @@ class Styles(object):
 
             style.hidden = hidden
             self.store.set(style.key, style)
-            log.info(u'[styles] loaded %s', style)
+            log.info(u'[styles] loaded %s', style.name if style else 'Unknown')
 
         return parent_urls
 

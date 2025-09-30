@@ -2,9 +2,11 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>CITE_STYLE</key>
+	<string>http://www.zotero.org/styles/chicago-notes-bibliography</string>
 	<key>COPY_CITEKEY_MOD</key>
 	<string>ctrl</string>
 	<key>mainkeyword</key>
-	<string>zzot</string>
+	<string>zzzot</string>
 </dict>
 </plist>

@@ -355,23 +355,48 @@ def do_copy(style_key, entry_id, bib_style=False, paste=False):
     if not s:
         raise ValueError('Unknown Style: %r' % style_key)
 
+    # Check if this style is known to have page_mangler issues
+    problematic_styles = [
+        'http://www.zotero.org/styles/chicago-notes-bibliography',
+        'http://www.zotero.org/styles/chicago-note-bibliography'
+    ]
+    
+    if s.key in problematic_styles:
+        log.warning('[copy] using known problematic style %s, will try fallback if needed', s.name)
+    
     try:
         data = app.styles.cite(e, s, bib_style, LOCALE)
     except Exception as ce:
         log.error('[copy] citation generation failed: %s', str(ce))
         # Check if this is the page_mangler error specifically
         if 'page_mangler' in str(ce).lower():
-            # Try with a fallback style (APA) if the current style fails
-            try:
-                log.info('[copy] trying fallback style (APA) due to page_mangler error')
-                fallback_style = app.styles.get('http://www.zotero.org/styles/apa')
-                if fallback_style:
-                    data = app.styles.cite(e, fallback_style, bib_style, LOCALE)
-                    log.info('[copy] fallback style succeeded')
-                else:
-                    raise ValueError('Citation generation failed due to CSL engine compatibility issue. The citation style "%s" is not compatible with the current CSL engine. Please try using a different citation style (e.g., APA, MLA, or Chicago Author-Date).' % s.name)
-            except Exception as fallback_error:
-                log.error('[copy] fallback style also failed: %s', str(fallback_error))
+            # Try with fallback styles if the current style fails
+            fallback_styles = [
+                'http://www.zotero.org/styles/apa',
+                'http://www.zotero.org/styles/mla',
+                'http://www.zotero.org/styles/chicago-author-date',
+                'http://www.zotero.org/styles/ieee'
+            ]
+            
+            fallback_succeeded = False
+            for fallback_url in fallback_styles:
+                try:
+                    log.info('[copy] trying fallback style (%s) due to page_mangler error', fallback_url)
+                    fallback_style = app.styles.get(fallback_url)
+                    if fallback_style:
+                        data = app.styles.cite(e, fallback_style, bib_style, LOCALE)
+                        log.info('[copy] fallback style succeeded: %s', fallback_style.name)
+                        # Add a note to the citation data that a fallback was used
+                        data['_fallback_used'] = True
+                        data['_original_style'] = s.name
+                        data['_fallback_style'] = fallback_style.name
+                        fallback_succeeded = True
+                        break
+                except Exception as fallback_error:
+                    log.warning('[copy] fallback style %s also failed: %s', fallback_url, str(fallback_error))
+                    continue
+            
+            if not fallback_succeeded:
                 raise ValueError('Citation generation failed due to CSL engine compatibility issue. The citation style "%s" is not compatible with the current CSL engine. Please try using a different citation style (e.g., APA, MLA, or Chicago Author-Date).' % s.name)
         elif 'timeout' in str(ce).lower():
             raise ValueError('Citation generation timed out. This reference may have malformed data. Please check the reference data in Zotero.')
