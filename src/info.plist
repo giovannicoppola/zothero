@@ -442,18 +442,7 @@
 			</dict>
 		</array>
 		<key>A950947F-8EA7-4749-AF55-2C7F9D6E695E</key>
-		<array>
-			<dict>
-				<key>destinationuid</key>
-				<string>9A202C58-854E-4E02-A640-BF13A9E1B823</string>
-				<key>modifiers</key>
-				<integer>0</integer>
-				<key>modifiersubtext</key>
-				<string></string>
-				<key>vitoclose</key>
-				<false/>
-			</dict>
-		</array>
+		<array/>
 		<key>AEE6452E-9186-4609-8AD4-D74F469F1A79</key>
 		<array>
 			<dict>
@@ -1332,24 +1321,7 @@ python3 zh.py citations "$id" "$1"
 				<key>escaping</key>
 				<integer>68</integer>
 				<key>script</key>
-				<string>function copyLink(uti_html, uti_plain, uti_rtf) {
-
-    let pboard = $.NSPasteboard.generalPasteboard;
-    pboard.clearContents;
-    pboard.setStringForType(uti_rtf, 'public.rtf');
-    pboard.setStringForType(uti_html, 'public.html');
-    pboard.setStringForType(uti_plain, 'public.utf8-plain-text');
-}
-
-function run(argv) {
-ObjC.import('AppKit');
-ObjC.import('stdlib');
-var UTI_HTML = $.getenv('UTI_HTML');
-var UTI_PLAIN = $.getenv('UTI_PLAIN');
-var UTI_RTF = $.getenv('UTI_RTF');
-
-  return copyLink(UTI_HTML, UTI_PLAIN, UTI_RTF)
-}</string>
+				<string>return true;</string>
 				<key>scriptargtype</key>
 				<integer>1</integer>
 				<key>scriptfile</key>
@@ -1413,6 +1385,9 @@ flags=()
 
 test -n "$bibliography" &amp;&amp; flags+=(--bibliography)
 test -n "$autopaste" &amp;&amp; flags+=(--paste)
+
+# Debug output
+echo "BASH: autopaste=$autopaste, flags=${flags[@]}" &gt;&amp;2
 
 python3 zh.py copy $flags "$style" "$id"</string>
 				<key>scriptargtype</key>
@@ -2825,7 +2800,7 @@ These are the workflow's default keywords in Alfred:
 	<key>variablesdontexport</key>
 	<array/>
 	<key>version</key>
-	<string>2.3.1</string>
+	<string>2.4</string>
 	<key>webaddress</key>
 	<string>https://github.com/giovannicoppola/zothero/</string>
 </dict>

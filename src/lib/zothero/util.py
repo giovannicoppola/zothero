@@ -25,8 +25,9 @@ from unicodedata import normalize
 
 log = logging.getLogger(__name__)
 
-# Regex to match Zotero date values
-match_date = re.compile(r'(\d\d\d\d)-(\d\d)-(\d\d).*').match
+# Regex patterns to match Zotero date values
+match_date_full = re.compile(r'(\d\d\d\d)-(\d\d)-(\d\d).*').match
+match_date_month = re.compile(r'(\d\d\d\d)-(\d\d).*').match
 
 
 SQLITE_DATE_FMT = '%Y-%m-%d %H:%M:%S'
@@ -147,6 +148,10 @@ def copyifnewer(source, copy):
         str: Path to copy
 
     """
+    if not os.path.exists(source):
+        # Source doesn't exist, return the copy path without copying
+        return copy
+        
     if not os.path.exists(copy) or getmtime(source) > getmtime(copy):
         log.debug('[util] copying %r to %r ...',
                   shortpath(source), shortpath(copy))
@@ -223,13 +228,28 @@ def parse_date(datestr):
     if not datestr:
         return None
 
-    m = match_date(datestr)
-    if not m:
-        return datestr[:4]  # YYYY
-    try:
-        return u'-'.join(m.groups())
-    except ValueError:
-        return None
+    # Try to match full date (YYYY-MM-DD)
+    m = match_date_full(datestr)
+    if m:
+        try:
+            year, month, day = m.groups()
+            # If day is 00 or 0, treat as month-year only
+            if day == '00' or day == '0':
+                return u'-'.join([year, month])
+            return u'-'.join(m.groups())
+        except ValueError:
+            return None
+    
+    # Try to match month and year (YYYY-MM)
+    m = match_date_month(datestr)
+    if m:
+        try:
+            return u'-'.join(m.groups())
+        except ValueError:
+            return None
+    
+    # Fall back to just year (YYYY)
+    return datestr[:4]
 
 
 def json_serialise(obj):

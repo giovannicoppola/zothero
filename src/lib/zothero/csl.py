@@ -153,6 +153,7 @@ def parse_date(datestr):
     parsed = util.parse_date(datestr)
     if parsed:
         parts = [int(s) for s in parsed.split('-')]
+        # Don't pad with zeros - let CSL processor handle incomplete dates properly
     else:
         parts = [int(datestr[:4])]
 
