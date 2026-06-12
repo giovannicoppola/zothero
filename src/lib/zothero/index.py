@@ -32,8 +32,9 @@ DB_VERSION = 9
 # Entry from the Zotero database).
 INDEX_SCHEMA = """
 CREATE VIRTUAL TABLE search USING fts3(
-    `id`, `title`, `year`, `creators`, `authors`, `editors`,
-    `tags`, `collections`, `attachments`, `notes`, `abstract`, `all`
+    `id`, `title`, `year`, `creators`, `authors`, `firstauthor`,
+    `editors`, `tags`, `collections`, `attachments`, `notes`,
+    `abstract`, `all`
 );
 
 CREATE TABLE modified (
@@ -73,13 +74,15 @@ PRAGMA INTEGRITY_CHECK;
 """
 
 # Search database column names
-COLUMNS = ('title', 'year', 'creators', 'authors', 'editors', 'tags',
-           'collections', 'attachments', 'notes', 'abstract', 'all')
+COLUMNS = ('title', 'year', 'creators', 'authors', 'firstauthor',
+           'editors', 'tags', 'collections', 'attachments', 'notes',
+           'abstract', 'all')
 
 # Search weightings for columns. The first column (key) is ignored (0.0)
 # collections, attachments, notes, abstract and all have lower weightings.
 # "all" is particularly low-ranked to avoid polluting results
-WEIGHTINGS = (0.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 0.5, 0.4, 0.3, 0.3, 0.1)
+WEIGHTINGS = (0.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 0.5, 0.4, 0.3, 0.3,
+              0.1)
 
 
 class InitialiseDB(Exception):
@@ -358,6 +361,14 @@ class Index(object):
                 names = {d.family for d in e.creators + e.authors + e.editors
                          if d.family}
 
+                # Family name of first author; fall back to first
+                # creator (e.g. editor of an edited volume)
+                firstauthor = u''
+                for d in e.authors or e.creators:
+                    if d.family:
+                        firstauthor = d.family
+                        break
+
                 all_ = [e.title, u' '.join(names), tags, collections,
                         attachments, notes, e.abstract, str(e.year),
                         e.date]
@@ -385,6 +396,7 @@ class Index(object):
                     str(e.year),
                     u' '.join([d.family for d in e.creators if d.family]),
                     u' '.join([d.family for d in e.authors if d.family]),
+                    firstauthor,
                     u' '.join([d.family for d in e.editors if d.family]),
                     tags,
                     collections,
@@ -400,7 +412,8 @@ class Index(object):
                     sql = u"""
                         UPDATE search
                             SET `title` = ?, `year` = ?, `creators` = ?,
-                                `authors` = ?, `editors` = ?,
+                                `authors` = ?, `firstauthor` = ?,
+                                `editors` = ?,
                                 `tags` = ?, `collections` = ?,
                                 `attachments` = ?, `notes` = ?,
                                 `abstract` = ?, `all` = ?
@@ -422,7 +435,7 @@ class Index(object):
                     # Fulltext search table
                     sql = u"""
                         INSERT INTO search
-                            VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+                            VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
                     """
                     c.execute(sql, data)
 
