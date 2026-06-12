@@ -62,6 +62,7 @@ Usage
 These are the workflow's default keywords in Alfred:
 
 - `zot <query>` — Search your Zotero database (common fields).
+    - `zot ^<name>` — NASA ADS-style first-author search: only matches entries whose first author's last name starts with `<name>`, sorted by author name and year (newest first).
     - `↩` — Open the entry in Zotero. (`fn+↩` is an alternate)
     - `⌘↩` — Copy citation to the pasteboard (see [Configuration](#configuration)).
     - `⌥↩` — Copy bibliography-style citation to the pasteboard (see [Configuration](#configuration)).

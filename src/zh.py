@@ -135,8 +135,27 @@ def do_search(query):
     if running:  # Tell Alfred to re-run the workflow
         wf.rerun = 0.2
 
+    # NASA ADS-style first-author search: "^smith" searches the
+    # firstauthor field and sorts results by author name and year
+    # (newest first) instead of by relevance
+    ads_query = query.startswith(u'^') and query[1:].strip()
+    if ads_query:
+        query = u'firstauthor:' + query[1:].strip()
+
     # Get entries matching query
     entries = app.search(query)
+
+    if ads_query:
+        def ads_key(e):
+            creators = e.authors or e.creators
+            name = u''
+            for c in creators:
+                if c.family:
+                    name = c.family.lower()
+                    break
+            return (name, -(e.year or 0))
+
+        entries.sort(key=ads_key)
 
     # ------------------------------------------------------------------
     # If no entries, show "Search XYZ" message or "no results" warning
