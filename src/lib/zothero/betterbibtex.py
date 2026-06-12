@@ -72,6 +72,26 @@ class BetterBibTex(object):
                 }
         self.exists = True
 
+    @classmethod
+    def from_refkeys(cls, refkeys):
+        """Build instance from a pre-loaded ``key: citekey`` mapping.
+
+        Used when there is no separate ``better-bibtex.sqlite`` (Zotero
+        7.0.31+/8/9), where citation keys are read from a native field
+        in the main Zotero database instead.
+
+        Args:
+            refkeys (dict): ``libraryID_itemKey: citekey`` mapping.
+
+        Returns:
+            BetterBibTex: Instance backed by ``refkeys``.
+
+        """
+        obj = cls.__new__(cls)
+        obj._refkeys = refkeys
+        obj.exists = bool(refkeys)
+        return obj
+
     def citekey(self, key):
         """Return Better Bibtex citekey for Zotero item.
 

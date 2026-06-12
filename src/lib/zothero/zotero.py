@@ -151,6 +151,23 @@ SELECT itemNotes.note AS note
 WHERE itemNotes.parentItemID = ?
 """
 
+# Retrieve native Better Bibtex citation keys (Zotero 7.0.31+/8/9),
+# where citekeys are stored as a regular field in the main database
+# rather than in a separate ``better-bibtex.sqlite``.
+CITEKEYS_SQL = u"""
+SELECT  items.libraryID AS libraryID,
+        items.key AS itemKey,
+        itemDataValues.value AS citekey
+    FROM items
+    JOIN itemData
+        ON items.itemID = itemData.itemID
+    JOIN fields
+        ON itemData.fieldID = fields.fieldID
+    JOIN itemDataValues
+        ON itemData.valueID = itemDataValues.valueID
+WHERE fields.fieldName = 'citationKey'
+"""
+
 # Retrieve tags for given item
 TAGS_SQL = u"""
 SELECT tags.name AS name
@@ -203,20 +220,42 @@ class Zotero(object):
     @property
     def bbt(self):
         """Return BetterBibTex."""
-        
+
         if not self._bbt:
-            
-            self.bibpath_copy = copyifnewer(self.originalBib, self.bibpath)
-
-
             from .betterbibtex import BetterBibTex
-            
-            self._bbt = BetterBibTex(self.bibpath_copy)
-            #self._bbt = BetterBibTex(self.dbpath)
+
+            if os.path.exists(self.originalBib):
+                # Legacy layout: citekeys live in their own
+                # ``better-bibtex.sqlite`` alongside the Zotero database.
+                self.bibpath_copy = copyifnewer(self.originalBib, self.bibpath)
+                self._bbt = BetterBibTex(self.bibpath_copy)
+            else:
+                # Zotero 7.0.31+/8/9: ``better-bibtex.sqlite`` is gone and
+                # citekeys are a native field in the main database.
+                self._bbt = BetterBibTex.from_refkeys(self._native_citekeys())
+
             if self._bbt.exists:
                 log.debug('[zotero] loaded BetterBibTex data')
 
         return self._bbt
+
+    def _native_citekeys(self):
+        """Return ``libraryID_itemKey: citekey`` map from main database.
+
+        Reads the native ``citationKey`` field added in Zotero 7.0.31,
+        which replaced the separate ``better-bibtex.sqlite`` in Zotero 9.
+
+        Returns:
+            dict: ``libraryID_itemKey: citekey`` mapping.
+
+        """
+        refkeys = {}
+        for row in self.conn.execute(CITEKEYS_SQL):
+            key = u'{}_{}'.format(row['libraryID'], row['itemKey'])
+            refkeys[key] = row['citekey']
+
+        log.debug('[zotero] loaded %d native citekey(s)', len(refkeys))
+        return refkeys
 
     @property
     def last_updated(self):
