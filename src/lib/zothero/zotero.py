@@ -322,8 +322,9 @@ class Zotero(object):
         sql = MODIFIED_ATTACHMENTS_SQL
         for row in self.conn.execute(sql, (ts,)):
             log.debug('[zotero] attachment(s) modified')
-            if self.entry(row['key'])["id"] not in modified_ids:
-                yield self.entry(row['key'])
+            entry = self.entry(row['key'])
+            if entry is not None and entry['id'] not in modified_ids:
+                yield entry
 
     def all_entries(self):
         """Return all database entries."""
