@@ -3,6 +3,9 @@
 __pycache__
 prefs.plist
 
+# Release binaries are published as GitHub Release assets, not tracked here
+releases/
+
 # Created by https://www.gitignore.io/api/python,sublimetext,vim
 
 ### Python ###
