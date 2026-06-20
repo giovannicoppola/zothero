@@ -164,21 +164,27 @@ WHERE itemTags.itemID = ?
 class Zotero(object):
     """Interface to the Zotero database."""
 
-    def __init__(self, datadir, dbpath=None, attachments_base_dir=None):
+    def __init__(self, datadir, dbpath=None, attachments_base_dir=None,
+                 live_dbpath=None):
         """Load Zotero data from ``datadir``.
 
         Args:
             datadir (str): Path to Zotero's data directory.
             dbpath (str, optional): Path to `zotero.sqlite` if not in
                 ``datadir``.
+            live_dbpath (str, optional): Path to Zotero's live (locked)
+                database. Queries run against ``dbpath``, which is refreshed
+                from ``live_dbpath`` lazily on first connection (see `conn`).
+                Defaults to ``dbpath`` (no copy needed).
 
         """
         self.datadir = datadir
         self.WF_CACHE = os.getenv('alfred_workflow_cache')
-        
-        
+
+
         self._attachments_dir = attachments_base_dir
         self.dbpath = dbpath or os.path.join(datadir, 'zotero.sqlite')
+        self.live_dbpath = live_dbpath or self.dbpath
         self._conn = None
         self._bbt = None  # BetterBibTex
         
@@ -194,6 +200,11 @@ class Zotero(object):
         """Return connection to the database."""
        
         if not self._conn:
+            # Refresh the working copy from the live database only now, when
+            # the data is actually needed. The citation-copy path never opens
+            # a connection, so it no longer triggers a full database copy.
+            if self.live_dbpath != self.dbpath:
+                copyifnewer(self.live_dbpath, self.dbpath)
             self._conn = sqlite3.connect(self.dbpath)
             self._conn.row_factory = sqlite3.Row
             log.debug('[zotero] opened database %r', shortpath(self.dbpath))
@@ -220,8 +231,10 @@ class Zotero(object):
 
     @property
     def last_updated(self):
-        """Return modified time of database file."""
-        t = os.path.getmtime(self.dbpath)
+        """Return modified time of the live database file."""
+        # Use the live database's mtime: it reflects real freshness and is
+        # always present, whereas the working copy is now made lazily.
+        t = os.path.getmtime(self.live_dbpath)
         log.debug('[zotero] database last modified %s', time_since(t))
         return t
 
