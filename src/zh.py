@@ -160,6 +160,11 @@ def do_search(query):
 
     # ------------------------------------------------------------------
     # Create and send Alfred feedback
+
+    # Whether Better BibTeX is installed. Read from the search index (written
+    # at index time), so this doesn't touch/copy the Zotero database.
+    bbt_available = app.index.bbt_available
+
     for i, e in enumerate(entries):
         #log.debug(u'%4d. %s', i + 1, e)
         
@@ -229,13 +234,10 @@ def do_search(query):
         else:
             mod = it.add_modifier('shift', 'No attachments', valid=False)
 
-        # Check if Better BibTeX is available
-        import zothero
-        bbt_available = zothero.app.zotero.bbt.exists
-        
+        # Copy cite-key (Better BibTeX)
         if COPY_CITEKEY_MOD and COPY_CITEKEY_MOD != '':
-            if bbt_available and e.citekey:
-                # Override with copy-citekey action given COPY_CITEKEY_MOD
+            if e.citekey:
+                # This item has a citation key.
                 if COPY_CITEKEY_MOD == '-':
                     it.setvar('action', 'copy-citekey')
                 elif COPY_CITEKEY_MOD in ['alt', 'cmd', 'ctrl', 'fn', 'shift']:
@@ -246,12 +248,18 @@ def do_search(query):
                     log.warning('COPY_CITEKEY_MOD should be one of '
                                 '-, alt, cmd, ctrl, fn, shift, or empty')
             else:
-                # Better BibTeX not available, show message
+                # No citekey for this item: either Better BibTeX isn't
+                # installed, or this particular item just hasn't been keyed.
+                if bbt_available:
+                    msg = 'No citation key for this item'
+                else:
+                    msg = 'Better BibTeX not installed'
+
                 if COPY_CITEKEY_MOD == '-':
                     it.setvar('action', 'copy-citekey')
                     it.setvar('citekey', '')  # Empty citekey to trigger fallback
                 elif COPY_CITEKEY_MOD in ['alt', 'cmd', 'ctrl', 'fn', 'shift']:
-                    mod = it.add_modifier(COPY_CITEKEY_MOD, 'Better BibTeX not installed', valid=False)
+                    mod = it.add_modifier(COPY_CITEKEY_MOD, msg, valid=False)
                     mod.setvar('action', 'copy-citekey')
                     mod.setvar('citekey', '')  # Empty citekey to trigger fallback
 
@@ -698,20 +706,22 @@ def do_citekey(citekey, paste=False):
 
     """
     log.debug('[citekey] key=%r, paste=%r', citekey, paste)
-    
-    # Check if Better BibTeX is available
-    import zothero
-    if not zothero.app.zotero.bbt.exists:
-        wf.warn_empty('Better BibTeX not installed', 
-                      'Install the Better BibTeX plugin for Zotero to use citekey functionality')
-        return
-    
-    # Check if citekey is empty (fallback case)
+
+    # The citekey is passed straight from the search result (it's stored in
+    # the index), so an empty value is the fallback case. Use the index's
+    # Better BibTeX flag — which doesn't touch/copy the Zotero database — to
+    # show an accurate message.
     if not citekey:
-        wf.warn_empty('Better BibTeX not installed', 
-                      'Install the Better BibTeX plugin for Zotero to use citekey functionality')
+        from zothero import app
+        if app.index.bbt_available:
+            wf.warn_empty('No citation key for this item',
+                          'This item does not have a Better BibTeX citation key')
+        else:
+            wf.warn_empty('Better BibTeX not installed',
+                          'Install the Better BibTeX plugin for Zotero to use '
+                          'citekey functionality')
         return
-    
+
     from workflow.util import run_trigger
     import subprocess
     

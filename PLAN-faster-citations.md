@@ -54,6 +54,31 @@ fork dev reported ~1.5s on 541 MB).
   - Rationale preserved: the copy exists because Zotero locks the live DB
     (core.py:58). Indexing/search still copies; only the citation path skips it.
 
+- **BetterBibTeX 9.x detection fix** — "Better BibTeX not installed" false alarm.
+  - Root cause: modern BBT (>= 6.7, Zotero 7) dropped the standalone
+    `better-bibtex.sqlite`. Citation keys are now a **native `citationKey`
+    field inside `zotero.sqlite`** (`fields`/`itemData`/`itemDataValues`). The
+    old `better-bibtex/` dir only holds `read-only.json` (pinned keys; `[]` here).
+    ZotHero checked the dead file path → `bbt.exists=False` → false message.
+    Verified on this machine: BBT 9.0.31, 9 keys present in `zotero.sqlite`.
+  - `betterbibtex.py`: `BetterBibTex(conn, legacy_dbpath=...)` now reads the
+    native `citationKey` field from the Zotero DB copy. NOTE: `citationKey` is a
+    *native* Zotero 7 field (in core `fields`, fieldID 9, `customFields` empty),
+    present even without BBT — so `exists` = "at least one citekey actually
+    present", not just "field exists" (avoids a false positive on Zotero 7
+    without BBT). Legacy standalone-file readers kept as a fallback for old BBT.
+  - `zotero.py`: `bbt` property passes `self.conn` (+ optional legacy file). No
+    more separate `better-bibtex.sqlite` copy.
+  - `index.py`: `DB_VERSION` 8 → 9 (forces rebuild so citekeys repopulate);
+    `bbt_available` flag written to `dbinfo` at index time and exposed as a
+    property — lets the **search path read BBT-availability without copying the
+    DB** (preserves the lazy-copy win above).
+  - `zh.py`: `do_search`/`do_citekey` use `app.index.bbt_available` (index flag)
+    + per-entry `e.citekey` instead of `zotero.bbt.exists` (which forced a copy).
+    A keyless item under installed BBT now says "No citation key for this item".
+  - Verified: native read (9 keys), no-BBT DB → `exists=False`, index flag
+    round-trips, all files compile.
+
 ---
 
 ## TODO

@@ -214,18 +214,21 @@ class Zotero(object):
     @property
     def bbt(self):
         """Return BetterBibTex."""
-        
+
         if not self._bbt:
-            
-            self.bibpath_copy = copyifnewer(self.originalBib, self.bibpath)
-
-
             from .betterbibtex import BetterBibTex
-            
-            self._bbt = BetterBibTex(self.bibpath_copy)
-            #self._bbt = BetterBibTex(self.dbpath)
+
+            # Modern Better BibTeX (Zotero 7) stores citation keys as a native
+            # `citationKey` field inside the Zotero database, so read them from
+            # the working copy (self.conn). Fall back to a legacy
+            # better-bibtex.sqlite file for older Better BibTeX installs.
+            legacy = None
+            if os.path.exists(self.originalBib):
+                legacy = copyifnewer(self.originalBib, self.bibpath)
+
+            self._bbt = BetterBibTex(self.conn, legacy_dbpath=legacy)
             if self._bbt.exists:
-                log.debug('[zotero] loaded BetterBibTex data')
+                log.debug('[zotero] loaded BetterBibTex citekeys')
 
         return self._bbt
 
