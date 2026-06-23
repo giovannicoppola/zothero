@@ -22,8 +22,24 @@ from .locales import LOCALE_DIR
 
 log = logging.getLogger(__name__)
 
-# Ruby executable that generates the citation
+# JXA executable that generates the citation (fallback; ~3s/run)
 PROG = os.path.join(os.path.dirname(__file__), 'cite')
+
+# Node version of the same program (~4x faster). Alfred's PATH omits
+# Homebrew, so check the usual install locations explicitly.
+PROG_NODE = os.path.join(os.path.dirname(__file__), 'cite-node.js')
+
+
+def find_node():
+    """Return path to node executable, or None if not installed."""
+    from shutil import which
+    for candidate in (os.getenv('ZOTHERO_NODE'),
+                      which('node'),
+                      '/opt/homebrew/bin/node',
+                      '/usr/local/bin/node'):
+        if candidate and os.path.exists(candidate):
+            return candidate
+    return None
 
 
 class CitationError(Exception):
@@ -42,7 +58,12 @@ def generate(csldata, cslfile, bibliography=False, locale=None):
         json.dump(csldata, fp)
         fp.flush()
 
-        cmd = [PROG, '--locale-dir', LOCALE_DIR]
+        node = find_node()
+        if node:
+            cmd = [node, PROG_NODE, '--locale-dir', LOCALE_DIR]
+        else:
+            log.warning('[cite] node not found, falling back to slow JXA cite')
+            cmd = [PROG, '--locale-dir', LOCALE_DIR]
         if bibliography:
             cmd.append('--bibliography')
         if locale:
