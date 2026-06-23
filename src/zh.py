@@ -60,6 +60,9 @@ CITE_STYLE = os.getenv('CITE_STYLE')
 # User's preferred locale for citations
 LOCALE = os.getenv('LOCALE')
 COPY_CITEKEY_MOD = os.getenv('COPY_CITEKEY_MOD')
+# When enabled, ↩ opens the entry's PDF in Zotero's reader instead of
+# selecting the item in Zotero.
+OPEN_PDF = os.getenv('OPEN_PDF') == '1'
 
 
 
@@ -101,6 +104,24 @@ def do_fields(query):
 
     wf.warn_empty('No matching columns', 'Try a different query?')
     wf.send_feedback()
+
+
+def pdf_open_url(entry):
+    """Return a ``zotero://open-pdf`` URL for the entry's first PDF.
+
+    Args:
+        entry (zothero.zotero.Entry): Entry to inspect.
+
+    Returns:
+        unicode or None: ``zotero://open-pdf/...`` URL opening the entry's
+        first PDF attachment in Zotero's reader, or ``None`` if it has none.
+
+    """
+    for att in entry.attachments:
+        if att.path and att.path.lower().endswith('.pdf'):
+            libpath = entry.get('library_path') or u'library'
+            return u'zotero://open-pdf/{}/items/{}'.format(libpath, att.key)
+    return None
 
 
 def do_search(query):
@@ -190,7 +211,14 @@ def do_search(query):
         f = EntryFormatter(e)
         sub = u'{} {}'.format(f.creators, f.year)
         key = u'{}_{}'.format(e.library, e.key)
-        url = u'zotero://select/items/' + key
+        select_url = u'zotero://select/items/' + key
+
+        # If OPEN_PDF is enabled and the entry has a PDF attachment, open it
+        # directly in Zotero's reader; otherwise fall back to selecting the
+        # item. The other action is always offered on the fn modifier.
+        pdf_url = pdf_open_url(e)
+        url = pdf_url if (OPEN_PDF and pdf_url) else select_url
+
         if e.attachments:
             sub += u' Attachments: ' + str(len(e.attachments))
 
@@ -239,10 +267,18 @@ def do_search(query):
         mod = it.add_modifier('ctrl', 'View all citation formats')
         mod.setvar('action', 'show-citations')
 
-        # Alternative open-in-zotero key with fn
-        mod = it.add_modifier('fn', 'Open in Zotero')
+        # fn offers whichever open action ↩ didn't take, so both selecting
+        # the item and opening its PDF in Zotero are always reachable.
+        if OPEN_PDF and pdf_url:
+            mod = it.add_modifier('fn', 'Select in Zotero')
+            mod.setvar('url', select_url)
+        elif pdf_url:
+            mod = it.add_modifier('fn', 'Open PDF in Zotero')
+            mod.setvar('url', pdf_url)
+        else:
+            mod = it.add_modifier('fn', 'Open in Zotero')
+            mod.setvar('url', select_url)
         mod.setvar('action', 'open-in-zotero')
-        mod.setvar('url', url)
         mod.setvar('id', e.id)
 
         # ------------------------------------------------------------------

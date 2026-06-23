@@ -187,7 +187,8 @@ class Zotero(object):
         self.live_dbpath = live_dbpath or self.dbpath
         self._conn = None
         self._bbt = None  # BetterBibTex
-        
+        self._library_paths = None  # libraryID -> zotero:// path segment
+
         self.originalBib = os.path.join(datadir, 'better-bibtex.sqlite')
         self.bibpath = os.path.join(self.WF_CACHE, 'better-bibtex.sqlite')
         
@@ -365,7 +366,36 @@ class Zotero(object):
         # Better Bibtex citekey
         e.citekey = self.bbt.citekey('{}_{}'.format(e.library, e.key))
 
+        # Zotero URI path segment for this entry's library, e.g. ``library``
+        # for the personal library or ``groups/<groupID>`` for a group
+        # library. Used to build ``zotero://open-pdf`` links.
+        e.library_path = self.library_paths.get(e.library, u'library')
+
         return e
+
+    @property
+    def library_paths(self):
+        """Map ``libraryID`` to its ``zotero://`` URI path segment.
+
+        The personal library is ``library``; group libraries are
+        ``groups/<groupID>``. ``zotero://open-pdf`` URIs need this form
+        (unlike ``zotero://select``, which accepts ``<libraryID>_<key>``).
+
+        Returns:
+            dict: ``{libraryID: path_segment}`` for group libraries.
+
+        """
+        if self._library_paths is None:
+            self._library_paths = {}
+            try:
+                for row in self.conn.execute(
+                        'SELECT libraryID, groupID FROM groups'):
+                    self._library_paths[row['libraryID']] = \
+                        u'groups/{}'.format(row['groupID'])
+            except sqlite3.OperationalError:
+                pass
+
+        return self._library_paths
 
     def _entry_attachments(self, entry_id):
         """Fetch attachments for an entry."""
