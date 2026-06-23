@@ -64,6 +64,7 @@ These are the workflow's default keywords in Alfred:
 - `zot <query>` — Search your Zotero database (common fields).
     - `zot ^<name>` — NASA ADS-style first-author search: only matches entries whose first author's last name starts with `<name>`, sorted by author name and year (newest first).
     - `↩` — Open the entry in Zotero. (`fn+↩` is an alternate)
+        - If `OPEN_PDF` is enabled in the configuration sheet, `↩` instead opens the entry's PDF in Zotero's built-in reader (entries without a PDF still select in Zotero). `fn+↩` then selects the item, and on entries you didn't open with `↩`, `fn+↩` offers "Open PDF in Zotero".
     - `⌘↩` — Copy citation to the pasteboard (see [Configuration](#configuration)).
     - `⌥↩` — Copy bibliography-style citation to the pasteboard (see [Configuration](#configuration)).
     - `⇧↩` — View entry attachments (if present).
@@ -201,6 +202,7 @@ You probably shouldn't edit the `CITE_STYLE` or `LOCALE` variables yourself, as 
 | `LOCALE`           | Locale for citations. Default: `en-US` (US English).                    |
 | `ZOTERO_DIR`       | Path to your Zotero data. Read from Zotero's config by default.         |
 | `COPY_CITEKEY_MOD` | Set to copy Better BibTeX citekey instead of CSL citation/bibliography. |
+| `OPEN_PDF`         | When enabled, `↩` opens the entry's PDF in Zotero's reader instead of selecting the item. |
 
 
 

@@ -2796,6 +2796,23 @@ These are the workflow's default keywords in Alfred:
 			<key>variable</key>
 			<string>ATTACHMENTS_DIR</string>
 		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>default</key>
+				<false/>
+				<key>text</key>
+				<string>Open the entry’s PDF in Zotero’s reader on ↩ (instead of selecting the item)</string>
+			</dict>
+			<key>description</key>
+			<string>Items without a PDF still select in Zotero. The other action is always available on the fn modifier.</string>
+			<key>label</key>
+			<string>Open PDF in Zotero</string>
+			<key>type</key>
+			<string>checkbox</string>
+			<key>variable</key>
+			<string>OPEN_PDF</string>
+		</dict>
 	</array>
 	<key>variablesdontexport</key>
 	<array/>
