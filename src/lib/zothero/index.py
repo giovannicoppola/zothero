@@ -25,7 +25,7 @@ from .zotero import Entry
 # Version of the database schema/data format.
 # Increment this every time the schema or JSON format changes to
 # invalidate the existing cache.
-DB_VERSION = 8
+DB_VERSION = 9
 
 # SQL schema for the search database. The Entry is also stored in the
 # database as JSON for speed (it takes 7 SQL queries to retrieve an
@@ -192,6 +192,22 @@ class Index(object):
             return row['n'] == 0
 
     @property
+    def bbt_available(self):
+        """Return ``True`` if Better BibTeX was detected at index time.
+
+        The flag is written during indexing (see `_update`), so reading it
+        here never touches the Zotero database — keeping the search path
+        copy-free.
+        """
+        sql = u"SELECT value FROM dbinfo WHERE key = 'bbt_available'"
+        try:
+            row = self.conn.execute(sql).fetchone()
+        except sqlite3.OperationalError:
+            return False
+
+        return bool(row) and row['value'] == '1'
+
+    @property
     def last_updated(self):
         """Return modified time of database file."""
         if not os.path.exists(self.dbpath):
@@ -303,6 +319,15 @@ class Index(object):
             log.debug('[index] forcing full re-index ...')
 
         with self.cursor() as c:
+            # ------------------------------------------------------
+            # Record whether Better BibTeX is installed. We do this during
+            # indexing (when the Zotero DB connection is open anyway) so the
+            # search path can read the flag without re-opening/copying the DB.
+            sql = u"""
+                INSERT OR REPLACE INTO dbinfo VALUES('bbt_available', ?)
+            """
+            c.execute(sql, ('1' if zot.bbt.exists else '0',))
+
             # ------------------------------------------------------
             # Get keys of indexed items
             sql = u'SELECT id FROM data'

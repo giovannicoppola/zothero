@@ -15,7 +15,7 @@ import logging
 import os
 
 from .config import read as read_config
-from .util import copyifnewer, unicodify, shortpath
+from .util import unicodify, shortpath
 
 
 # Default location of Zotero's data in version 5
@@ -128,10 +128,14 @@ class ZotHero(object):
             if not os.path.exists(original):
                 raise ValueError('Zotero database not found: %r' % original)
 
-            # Ensure cached copy of database is up to date
-            dbpath = copyifnewer(original, self._copy_path)
-            
-            self._zot = Zotero(self.zotero_dir, dbpath, self.attachments_dir)
+            # Point Zotero at a cache copy for queries, but pass the live
+            # database too so the (potentially large) copy is made lazily —
+            # only when the database is actually read (indexing/search).
+            # The citation-copy path uses the prebuilt search index and the
+            # styles directory, so it no longer re-copies the database on
+            # every copy.
+            self._zot = Zotero(self.zotero_dir, self._copy_path,
+                               self.attachments_dir, live_dbpath=original)
 
             # Validate paths by calling storage & styles properties
             log.debug('[core] storage=%r', shortpath(self._zot.storage_dir))
