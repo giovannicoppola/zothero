@@ -79,6 +79,28 @@ fork dev reported ~1.5s on 541 MB).
   - Verified: native read (9 keys), no-BBT DB → `exists=False`, index flag
     round-trips, all files compile.
 
+- **Node citation backend + citeproc 1.4.61** — integrated from Matthew Fisher's
+  (lutefiasco) PRs #52 + #53, cherry-picked onto `faster-citations` (commits
+  authored by Matthew, preserved). This is Phase A + Phase B.1 below.
+  - `src/lib/cite/cite.py`: `generate()` prefers `node cite-node.js` when a node
+    executable is found (`ZOTHERO_NODE` → PATH → `/opt/homebrew/bin` →
+    `/usr/local/bin`), else falls back to the JXA `cite` with a logged warning.
+    No change for users without node.
+  - `src/lib/cite/cite-node.js`: direct port of the JXA `cite` (same CLI, same
+    `{html, rtf}` JSON). `src/lib/cite/citeproc-bundle.js`: vendored Juris-M
+    citeproc 1.4.61 (`require()`d by relative path — no npm install needed).
+  - Verified on this machine (node v26): APA output **byte-identical** to JXA;
+    Chicago notes-bibliography on a *paged* item now cites correctly under node
+    (1.375s) where JXA crashes with `page_mangler is not a function`; the python
+    `generate()` wrapper selects node end-to-end.
+  - Known limitation (documented by Matthew): the JXA fallback still embeds
+    1.1.183, so paged Chicago still crashes when node is absent. Regenerating the
+    JXA bundle is deferred.
+  - STILL TODO: remove the **silent APA fallback** in `zh.py do_copy` (Phase B.2)
+    — it masks `page_mangler` by silently re-citing in APA/MLA/etc. and reporting
+    success. Now redundant when node is present; still produces wrong-style output
+    (no error) when node is absent. Behaviour change → confirm with Giovanni.
+
 ---
 
 ## TODO
