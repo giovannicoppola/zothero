@@ -25,7 +25,8 @@ from .zotero import Entry
 # Version of the database schema/data format.
 # Increment this every time the schema or JSON format changes to
 # invalidate the existing cache.
-DB_VERSION = 9
+# 10: added the `firstauthor` FTS column (v2.5.0 shipped 9).
+DB_VERSION = 10
 
 # SQL schema for the search database. The Entry is also stored in the
 # database as JSON for speed (it takes 7 SQL queries to retrieve an
