@@ -38,6 +38,8 @@ Features
 --------
 
 - Perform full-text search across your Zotero database, including only searching specific fields
+- NASA ADS-style first-author search (`zot ^name`) — match entries by first author's last name, sorted by author and year
+- Open an entry's PDF directly in Zotero's built-in reader (optional, via `OPEN_PDF`)
 - Copy citations using any [CSL][csl] style you have installed in Zotero
 - Copy citations either in citation/note style or bibliography style
 - Copy citations in any [locale supported by CSL](#locales)
@@ -53,6 +55,8 @@ Download & installation
 Download the `ZotHero-XYZ.alfredworkflow` file from [GitHub releases](https://github.com/giovannicoppola/zothero/releases), and double-click the downloaded file to install.
 
 **Note**: Versions 2.0 and later are only compatible with Alfred 5. If you're still using Alfred 4, download [v1.99.7][v1.99.7].
+
+**Recommended:** Install [Node.js](https://nodejs.org) (e.g. `brew install node`). When present, ZotHero uses a much faster citation engine (~4× faster) that also supports modern Chicago page-range styles. Without Node, it falls back to a slower built-in engine, and some Chicago styles won't work. If your `node` is in a non-standard location, set `ZOTHERO_NODE` to its full path in the [configuration sheet][conf-sheet].
 
 
 <a name="usage"></a>
@@ -203,6 +207,7 @@ You probably shouldn't edit the `CITE_STYLE` or `LOCALE` variables yourself, as 
 | `ZOTERO_DIR`       | Path to your Zotero data. Read from Zotero's config by default.         |
 | `COPY_CITEKEY_MOD` | Set to copy Better BibTeX citekey instead of CSL citation/bibliography. |
 | `OPEN_PDF`         | When enabled, `↩` opens the entry's PDF in Zotero's reader instead of selecting the item. |
+| `ZOTHERO_NODE`     | Optional path to a `node` executable for the fast citation engine. Auto-detected if unset. |
 
 
 
@@ -223,6 +228,32 @@ The [Zorro icon][icon-source] was created by [Dan Lowenstein][lowenstein] from [
 Changelog
 ----------------
 
+- 2026-06-23 Version 2.6: NASA ADS-style first-author search (`^name`), plus an
+  optional setting to open an entry's PDF directly in Zotero's reader. Thanks to
+  [@zhouconghao](https://github.com/zhouconghao) for the first-author search
+  ([#51](https://github.com/giovannicoppola/zothero/pull/51)), and to
+  [@ljci](https://github.com/ljci) ([#44](https://github.com/giovannicoppola/zothero/issues/44))
+  and [@flin16](https://github.com/flin16) ([#47](https://github.com/giovannicoppola/zothero/issues/47))
+  for proposing the open-in-Zotero feature.
+- 2026-06-23 Version 2.5: optional Node citation backend (~4× faster citations)
+  with citeproc 1.4.61 (fixes the Chicago page-range crash), and citation errors
+  are now surfaced honestly instead of silently falling back to another style.
+  Thanks to [@lutefiasco](https://github.com/lutefiasco) for the Node backend
+  ([#52](https://github.com/giovannicoppola/zothero/pull/52),
+  [#53](https://github.com/giovannicoppola/zothero/pull/53)),
+  [@zhouconghao](https://github.com/zhouconghao) for reading native citekeys when
+  `better-bibtex.sqlite` is missing ([#50](https://github.com/giovannicoppola/zothero/pull/50)),
+  and to [@burgershot](https://github.com/burgershot) ([#48](https://github.com/giovannicoppola/zothero/issues/48))
+  and [@SdotVdot](https://github.com/SdotVdot) ([#49](https://github.com/giovannicoppola/zothero/issues/49))
+  for reporting the slow-citation and Zotero-9 issues.
+- 2026-06-22 Version 2.4.1: restore copy-citekey under modern Better BibTeX /
+  Zotero 7 (native `citationKey` field) and make the citation-copy SQLite copy lazy.
+- 2025-10-07 Version 2.4: restored auto-paste when using the snippet trigger,
+  fixed the Better BibTeX requirement, and fixed the "0 day" bug in date
+  formatting. Thanks to [@johannrichard](https://github.com/johannrichard)
+  ([#32](https://github.com/giovannicoppola/zothero/issues/32)) for reporting the date bug.
+- 2025-09-30 Version 2.3.1: citation handling fixes.
+- 2025-09-29 Version 2.3: improvements to citation and citekey handling.
 - 2023-11-23 Version 2.2: added support for newer BetterBibtex (thanks [@fty1777](https://github.com/fty1777) and [@retorquere](https://github.com/retorquere))
 - 2022-12-15 Version 2.1
 - 2022-11-27 Version 2.0 updated for Alfred 5
