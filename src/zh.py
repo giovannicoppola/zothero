@@ -22,7 +22,7 @@ Usage:
     zh locale [<query>]
     zh notify [--title <msg>] [--text <msg>]
     zh reindex
-    zh search <query>
+    zh search [<query>]
     zh style [--style <key>] [<query>]
     zh setvar <key> <value>
     zh --help
@@ -136,7 +136,10 @@ def do_search(query):
     style = None
     if CITE_STYLE:
         style = app.styles.get(CITE_STYLE)
-        log.debug(u'Citation style: %s', style.name)
+        if style:
+            log.debug(u'Citation style: %s', style.name)
+        else:
+            log.warning(u'Unknown citation style %r — ignoring', CITE_STYLE)
 
     # Add AUTOPASTE to workflow's variables, as Alfred's default
     # behaviour is to drop all other variables on the floor if

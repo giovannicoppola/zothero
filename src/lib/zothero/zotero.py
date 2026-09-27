@@ -190,7 +190,10 @@ class Zotero(object):
         self._library_paths = None  # libraryID -> zotero:// path segment
 
         self.originalBib = os.path.join(datadir, 'better-bibtex.sqlite')
-        self.bibpath = os.path.join(self.WF_CACHE, 'better-bibtex.sqlite')
+        if self.WF_CACHE:
+            self.bibpath = os.path.join(self.WF_CACHE, 'better-bibtex.sqlite')
+        else:
+            self.bibpath = self.originalBib
         
         
         

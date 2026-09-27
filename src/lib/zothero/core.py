@@ -94,7 +94,7 @@ class ZotHero(object):
 
             self._zotero_dir = path
 
-        return self._zotero_dir
+        return os.path.expanduser(self._zotero_dir)
 
     @property
     def attachments_dir(self):
