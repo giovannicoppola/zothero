@@ -466,9 +466,11 @@ def do_copy(style_key, entry_id, bib_style=False, paste=False):
     # If paste requested, simulate CMD+V
     if paste:
         time.sleep(0.2)  # Wait for clipboard to be set
-        import os
-        # Use osascript to simulate keystroke
-        os.system('osascript -e \'tell application "System Events" to keystroke "v" using command down\'')
+        # Use osascript to simulate keystroke (no shell interpreter involved)
+        subprocess.run(
+            ['osascript', '-e',
+             'tell application "System Events" to keystroke "v" using command down'],
+            check=False)
 
 
 def do_config(query):
